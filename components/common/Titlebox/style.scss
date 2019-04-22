@@ -1,0 +1,27 @@
+@charset "utf-8";
+
+@import './../../../styles/fw.scss';
+
+.titlebox {
+    @include pd(120px 0 80px, 12vw 0 10vw);
+}
+
+.wrap {
+    text-align: center;
+}
+
+.eng {
+    display: block;
+    @include fontSize(36px, 24px);
+    font-family: $font_logojr;
+    font-weight: 900;
+    @include mb(20px, 10px);
+    line-height: 1;
+}
+
+.jpn {
+    @include fontSize(15px, 13px);
+    font-weight: 700;
+    display: block;
+    line-height: 1;
+}

@@ -1,0 +1,48 @@
+@charset "utf-8";
+@import './../../styles/fw.scss';
+
+.fw {
+	min-width: $width_main + px;
+	overflow: hidden;
+	font-family: $font_base;
+	font-weight: 500;
+	color : $color_text;
+	font-size: $font-size_base + px;
+    line-height: $line-height_base;
+    
+    .fMax { float: inherit; width: auto; margin: 0 auto; }
+
+
+	// -------------------------------------------
+	// Small Width Layout
+	// -------------------------------------------
+	@include max( s ){
+
+		.fInner {
+			width: 100%;
+			margin: 0;
+			padding: 0 15px;
+		}
+
+	}
+
+
+	// -------------------------------------------
+	// Liquid Layout
+	// -------------------------------------------
+	@include max( s ){
+
+		min-width: 320px;
+		// font-size: vw($sp-font-size_base);
+        // line-height: $sp-line-height_base;
+        
+        .fMax { float: inherit; width: 100%; }
+
+	}
+
+
+}//.fw
+
+.wrapper {
+	@include pt(90px, 10vh);
+}

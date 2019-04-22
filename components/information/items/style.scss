@@ -1,0 +1,36 @@
+@charset "utf-8";
+
+@import './../../../styles/fw.scss';
+
+.list {
+
+}
+
+.item {
+    @include mb(80px, 30px);
+}
+
+.box {
+    display: block;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.image {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.text {
+    @include fontSize(14px, 13px);
+    line-height: 1.8;
+    color: #000;
+    @include mt(10px);
+}
+
+.date {
+    @include fontSize(12px);
+    color: #666666;
+}

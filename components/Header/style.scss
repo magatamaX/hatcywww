@@ -1,0 +1,222 @@
+@charset "utf-8";
+
+@import './../../styles/fw.scss';
+
+.button {
+    @include fontSize(40px);
+}
+
+.header {
+    @include height(90px, auto);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 2px rgba(#000, 0.3);
+    z-index: 10;
+}
+
+.spHead {
+    @include max(s) {
+        height: 10vh;
+        position: relative;
+    }
+}
+
+.spContents {
+    @include max(s) {
+        height: 90vh;
+        position: relative;
+        padding: 20vw 0;
+        display: none;
+
+        &.on {
+            display: block;
+        }
+    }
+}
+
+.inner {
+    position: relative;
+    @include width(100%);
+    @include height(100%);
+    @include pd(20px, 0);
+}
+
+.title {
+    @include width(160px, 18vh);
+    position: absolute;
+    @include top(50%);
+    @include left(20px, 50%);
+    transform: translateY(-50%);
+
+    @include max(s) {
+        transform: translate(-50%,-50%);
+    }
+}
+
+.list {
+    @include width(520px, auto);
+    position: absolute;
+    @include top(50%, auto);
+    @include left(50%, auto);
+    transform: translate(-50%,-50%);
+    text-align: center;
+
+    @include max(s) {
+        position: static;
+        transform: none;
+        font-size: 5vw;
+    }
+}
+
+.item {
+    @include max(s) {
+        margin-bottom: 5vh;
+    }
+
+    &.itemSpOnly {
+        display: none;
+        @include max(s) {
+            display: block;
+        }
+    }
+}
+
+
+
+.anchor {
+    color: #000;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+
+    &::before {
+        content: '';
+        display: block;
+        @include width(100%);
+        @include height(20px);
+        position: absolute;
+        @include bottom(-3px);
+        @include left(0);
+        background-image: linear-gradient($color_main, $color_main);
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        background-size: 0% 5px;
+        transition: background-size .3s ease-out;
+    }
+
+    &:hover {
+
+        &::before {
+            background-size: 100% 5px;
+        }
+    }
+}
+
+.sns {
+    @include width(120px, 40vw);
+    position: absolute;
+    @include top(50%, auto);
+    @include right(140px, auto);
+    transform: translate(-50%,-50%);
+    text-align: center;
+
+    @include max(s) {
+        position: static;
+        transform: none;
+        margin: 10vh auto 0;
+    }
+}
+
+.contact {
+    position: absolute;
+    @include top(0);
+    @include right(0);
+    @include width(100px);
+    @include height(100%);
+
+     a {
+        display: block;
+        background-color: $color_button_blue;
+        color: #fff;
+        line-height: 1.8;
+        @include width(100%);
+        @include height(100%);
+        @include flexBase( $wrap: "nowrap", $direction: "column", $justify: "center", $align: "center" );
+        transition: all .2s ease-out;
+
+        &:hover {
+            background-color: $color_main;
+            color: $color_button_blue;
+        }
+    }
+
+    @include max(s) {
+        display: none;
+    }
+}
+
+.spToggleArea {
+    display: none;
+
+    @include max(s) {
+        display: block;
+        width: 30px;
+        height: 20px;
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+    }
+}
+
+.togglebutton {
+    display: block;
+    width: 30px;
+    height: 20px;
+    position: relative;
+
+    span {
+        display: block;
+        width: 30px;
+        height: 2px;
+        background-color: #000;
+        position: absolute;
+
+        &.first {
+            top: 0;
+            left: 0;
+        }
+
+        &.second {
+            top: 50%;
+            left: 0;
+        }
+
+        &.third {
+            top: 100%;
+            left: 0;
+        }
+    }
+
+    &.on {
+        span {
+            &.first {
+                top: 50%;
+                transform: translateY(-50%) rotate(45deg);
+            }
+    
+            &.second {
+                display: none;
+            }
+    
+            &.third {
+                top: 50%;
+                transform: translateY(-50%) rotate(-45deg);
+            }
+        }
+    }
+
+}

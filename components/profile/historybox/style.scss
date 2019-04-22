@@ -1,0 +1,41 @@
+@charset "utf-8";
+
+@import './../../../styles/fw.scss';
+
+.table {
+    @include width(100%);
+    table-layout: fixed;
+    border-bottom: 1px solid #ccc;
+    @include mb(100px);
+
+    @include max(s) {
+        display: block;
+    }
+}
+
+.tr {
+    border-top: 1px solid #ccc;
+}
+
+.th {
+    @include width(200px, auto);
+    vertical-align: center;
+    text-align: center;
+    @include fontSize(18px, 16px);
+    font-weight: 700;
+    color: #ccc;
+
+    @include max(s) {
+        display: block;
+    }
+}
+
+.td {
+    vertical-align: center;
+    @include pd(40px 15px, 0 15px 30px);
+
+    @include max(s) {
+        display: block;
+        font-size: 13px;
+    }
+}

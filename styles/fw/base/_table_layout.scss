@@ -1,0 +1,40 @@
+@charset "utf-8";
+
+// ---------------------------------------------------------------------------
+//
+// Table Layout
+//
+// ---------------------------------------------------------------------------
+
+// Defalt
+// -----------------------------------------------------
+.fTable {
+
+	display:table;
+	width: 100%;
+	table-layout: fixed;
+
+	> *:not(.fTable_row) {
+		display: table-cell;
+		vertical-align: middle;
+	}
+
+	> .fTable_row {
+		display: table-row;
+		> * {
+			display: table-cell;
+			vertical-align: middle;
+		}
+	}
+
+
+}//.table
+
+.fTable,
+.fTable > .fTable_row {
+
+	$class: "fCell";
+
+	@include SetPerBreakpointMixin( $class, $mixin: 'tableCell' );
+
+}//.table

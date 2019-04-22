@@ -1,0 +1,31 @@
+.slick-next
+{
+    right: 10px;
+    z-index: 10;
+}
+[dir='rtl'] .slick-next
+{
+    right: auto;
+    left: -25px;
+}
+
+.slick-prev
+{
+    left: 10px;
+    z-index: 10;
+}
+[dir='rtl'] .slick-prev
+{
+    right: -25px;
+    left: auto;
+}
+
+.slick-current .slick-thumbBlock {
+    outline: 5px solid #29ABE2;
+}
+
+@media screen and (max-width: 768px) {
+    .slick-current .slick-thumbBlock {
+        outline: 2px solid #29ABE2;
+    }  
+}

@@ -1,0 +1,211 @@
+@charset "utf-8";
+
+@import './../../../styles/fw.scss';
+
+.profile {
+    @include pt(90px, 10vw);
+    border-top: 2px dashed rgba(#000, 0.1);
+    position: relative;
+}
+
+.inner {
+    position: relative;
+    @include height(530px, auto);
+}
+
+.title {
+    position: absolute;
+    @include left(0, auto);
+    @include top(20px, auto);
+
+    @include width(232px, 40vw);
+
+    transform-origin: bottom left;
+
+    opacity: 0;
+
+    &.on {
+        opacity: 1;
+        animation: aniRotate 1500ms linear both;
+    }
+
+    @include max(s) {
+        position: static;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.box {
+    position: absolute;
+    @include right(0);
+    @include top(0);
+
+    @include width(420px, auto);
+    background-color: $color_sub;
+    color: #fff;
+    border-radius: 10px;
+
+    @include pd(50px 30px 30px, 5vw);
+
+    box-shadow: 10px 10px 0 #ccc;
+
+    z-index: 1;
+
+    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 3000, 0, 0, 1);
+
+    &.on {
+        animation: aniRight 1500ms linear both;
+    }
+
+    @include max(s) {
+        position: relative;
+        box-shadow: -2vw 2vw 0 #ccc;
+        margin-top: 8vw;
+    }
+}
+
+.namebox {
+    @include pd(0 35px, 0);
+    @include mb(30px, 10px);
+
+    @include max(s) {
+        text-align: center;
+    }
+}
+
+.katagaki {
+    display: block;
+    @include fontSize(15px, 14px);
+    font-weight: 700;
+    @include mb(10px, 3px);
+}
+
+.name {
+    display: block;
+    font-family: $font_logojr;
+    font-weight: 900;
+    @include fontSize(43px, 28px);
+    letter-spacing: .1em;
+    @include mb(10px, 3px);
+}
+
+.nameEnglish {
+    display: block;
+    @include fontSize(11px, 11px);
+    text-align: right;
+
+    @include max(s) {
+        text-align: center;
+    }
+}
+
+.intro {
+    @include fontSize(15px, 13px);
+    line-height: 27px;
+
+    @include max(s) {
+        line-height: 1.6;
+    }
+}
+
+.buttonArea {
+    text-align: right;
+    @include mt(30px, 20px);
+}
+
+.hatchy {
+    position: absolute;
+    @include left(-93px);
+    @include bottom(0);
+
+    z-index: 0;
+
+    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -3000, 0, 0, 1);
+
+    &.on {
+        animation: aniLeft 1500ms linear both;
+    }
+
+    @include max(s) {
+        position: static;
+        width: 70vw;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+    }
+}
+
+.bg1 {
+    position: absolute;
+    top: 25%;
+    left: 0%;
+    width: 300px;
+    height: 200px;
+    background-image: url('/static/images/common/bg1.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    z-index: -1;
+}
+.bg2 {
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    width: 300px;
+    height: 200px;
+    background-image: url('/static/images/common/bg2.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    z-index: -1;
+}
+.bg1, .bg2 {
+    @include max(s) {
+        display: none;
+    }
+}
+/* Generated with Bounce.js. Edit at http://bouncejs.com#%7Bs%3A%5B%7BT%3A%22t%22%2Ce%3A%22b%22%2Cd%3A1000%2CD%3A500%2Cf%3A%7Bx%3A-800%2Cy%3A0%7D%2Ct%3A%7Bx%3A0%2Cy%3A0%7D%2Cs%3A3%2Cb%3A5%7D%5D%7D */
+  
+@keyframes aniLeft { 
+    0%     { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -3000, 0, 0, 1); }
+    3.7%   { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -408.711, 0, 0, 1); }
+    7.31%  { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -99.648, 0, 0, 1); }
+    11.01% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 68.152, 0, 0, 1); }
+    14.61% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 110.078, 0, 0, 1); }
+    23.72% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 25.599, 0, 0, 1); }
+    32.83% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -12.021, 0, 0, 1); }
+    51.05% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1.313, 0, 0, 1); }
+    69.27% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -0.143, 0, 0, 1); }
+    87.49% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0.016, 0, 0, 1); }
+    100%   { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); } 
+}
+  
+@keyframes aniRight { 
+    0%     { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 3000, 0, 0, 1); }
+    3.7%   { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 408.711, 0, 0, 1); }
+    7.31%  { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 99.648, 0, 0, 1); }
+    11.01% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -68.152, 0, 0, 1); }
+    14.61% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -110.078, 0, 0, 1); }
+    23.72% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -25.599, 0, 0, 1); }
+    32.83% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 12.021, 0, 0, 1); }
+    51.05% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -1.313, 0, 0, 1); }
+    69.27% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0.143, 0, 0, 1); }
+    87.49% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -0.016, 0, 0, 1); }
+    100%   { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); } 
+}
+  
+@keyframes aniRotate { 
+    0% { transform: matrix3d(0, -1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    4.3% { transform: matrix3d(0.723, -0.691, 0, 0, 0.691, 0.723, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    8.61% { transform: matrix3d(0.982, -0.19, 0, 0, 0.19, 0.982, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    12.91% { transform: matrix3d(0.997, 0.082, 0, 0, -0.082, 0.997, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    17.22% { transform: matrix3d(0.989, 0.146, 0, 0, -0.146, 0.989, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    28.33% { transform: matrix3d(0.999, 0.032, 0, 0, -0.032, 0.999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    39.44% { transform: matrix3d(1, -0.01, 0, 0, 0.01, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    61.66% { transform: matrix3d(1, 0.001, 0, 0, -0.001, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    83.98% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    100% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); } 
+}
+  
+  

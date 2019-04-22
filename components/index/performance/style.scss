@@ -1,0 +1,213 @@
+@charset "utf-8";
+
+@import './../../../styles/fw.scss';
+
+.performance {
+    border-top: 2px dashed rgba(#000, 0.1);
+    position: relative;
+}
+
+.inner {
+    @include pt(220px, 10vw);
+    @include mb(50px, 6vw);
+    position: relative;
+    // @include height(530px);
+}
+
+.title {
+    @include width(340px, 50vw);
+    position: absolute;
+    @include top(90px, auto);
+    @include left(50%, 10vw);
+
+    transform-origin: bottom right;
+    
+    opacity: 0;
+
+    &.on {
+        opacity: 1;
+        animation: aniRotate 1500ms linear both;
+    }
+
+    @include max(s) {
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.videobox {
+    position: relative;
+
+    @include max(s) {
+        margin-top: 10vw;
+    }
+}
+
+.hatchy {
+    position: absolute;
+    @include bottom(100%);
+    @include left(50px, 3vw);
+    z-index: -1;
+    transform: translate3d(0,100%,0);
+    transition: transform 300ms ease-out 500ms;
+
+    &.on {
+        transform: translate3d(0,0,0);
+    }
+
+    @include max(s) {
+        width: 28vw;
+    }
+}
+
+.youtube {
+    position: absolute;
+    @include top(35px, 4vw);
+    @include left(50%);
+    transform: translateX(-50%);
+    @include width(710px, 82vw);
+}
+
+.iframewrap {
+    position: relative;
+    @include width(100%);
+    @include pt(62.25%);
+}
+
+.iframe {
+    position: absolute;
+    @include top(0);
+    @include left(0);
+    @include width(100%);
+    @include height(100%);
+}
+
+.frame {
+    position: relative;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.playlist {
+    @include mb(80px, 10vw);
+}
+
+.slideItem {
+    @include pd(10px, 3px);
+    cursor: pointer;
+    outline: none;
+
+    &:hover {
+        .caption {
+            @include bottom(0);
+        }
+    }
+}
+
+.thumbBlock {
+    box-shadow: 2px 2px 5px rgba(#000, 0.2);
+}
+.thumbArea {
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        display: block;
+        @include pt(56.25%);
+    }
+}
+
+.thumb {
+    display: block;
+    @include width(100%);
+    position: absolute;
+    @include top(50%);
+    @include left(0);
+    transform: translateY(-50%);
+}
+
+.caption {
+    position: absolute;
+    @include width(100%);
+    @include bottom(-60px);
+    @include left(0);
+    background-color: rgba(#000, 0.4);
+    color: #fff;
+    @include pd(10px);
+    @include fontSize(12px);
+    line-height: 1.4;
+    transition: bottom .4s ease-out;
+
+    @include max(s) {
+        display: none;
+    }
+}
+
+.bg1 {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    width: 300px;
+    height: 200px;
+    background-image: url('/static/images/common/bg1.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    z-index: -2;
+}
+.bg2 {
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    width: 300px;
+    height: 200px;
+    background-image: url('/static/images/common/bg2.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    z-index: -2;
+}
+.bg3 {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    width: 300px;
+    height: 200px;
+    background-image: url('/static/images/common/bg3.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    z-index: -2;
+}
+.bg4 {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    width: 300px;
+    height: 200px;
+    background-image: url('/static/images/common/bg4.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    z-index: -2;
+}
+.bg1, .bg2, .bg3, .bg4 {
+    @include max(s) {
+        display: none;
+    }
+}
+
+@keyframes aniRotate { 
+    0% { transform: matrix3d(0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    4.3% { transform: matrix3d(0.723, 0.691, 0, 0, -0.691, 0.723, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    8.61% { transform: matrix3d(0.982, 0.19, 0, 0, -0.19, 0.982, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    12.91% { transform: matrix3d(0.997, -0.082, 0, 0, 0.082, 0.997, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    17.22% { transform: matrix3d(0.989, -0.146, 0, 0, 0.146, 0.989, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    28.33% { transform: matrix3d(0.999, -0.032, 0, 0, 0.032, 0.999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    39.44% { transform: matrix3d(1, 0.01, 0, 0, -0.01, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    61.66% { transform: matrix3d(1, -0.001, 0, 0, 0.001, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    83.98% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    100% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); } 
+}

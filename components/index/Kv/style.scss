@@ -1,0 +1,129 @@
+@charset "utf-8";
+
+@import './../../../styles/fw.scss';
+
+.kv {
+
+}
+
+.inner {
+    position: relative;
+}
+
+.title {
+    position: absolute;
+    @include top(50%);
+    @include left(50%);
+    transform: translate(-50%, -50%) translate(-50%, -50%) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -800, 0, 1);
+    @include width(460px, 80vw);
+    z-index: 1;
+
+    &.on {
+        animation: animation 1500ms linear both;
+    }
+}
+
+.bg {
+    position: relative;
+    @include width(100vw);
+    @include height(calc(100vh - 90px), calc(100vh - 10vh));
+    overflow: hidden;
+}
+
+.bgContents {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    min-width: 100%;
+    min-height: 100%;
+    max-width: none !important;
+    z-index: 0;
+}
+
+
+.scroll {
+    position: absolute;
+    @include bottom(100px);
+    @include left(50%);
+    transform: translateX(-50%);
+    opacity: 0;
+
+    &.on {
+        animation: on 0.5s linear 1s;
+        animation-fill-mode: forwards;
+    }
+  }
+  .scroll span {
+    position: absolute;
+    @include top(0);
+    @include left(50%);
+    @include width(30px);
+    @include height(50px);
+    @include ml(-15px);
+    border: 2px solid #fff;
+    border-radius: 50px;
+    box-sizing: border-box;
+  }
+  .scroll span::before {
+    position: absolute;
+    content: '';
+    @include top(10px);
+    @include left(50%);
+    @include width(6px);
+    @include height(6px);
+    @include ml(-3px);
+    background-color: #fff;
+    border-radius: 100%;
+    animation: sdb 1s infinite;
+    box-sizing: border-box;
+  }
+
+  @keyframes sdb {
+    0% {
+      transform: translate(0, 0);
+      opacity: 0;
+    }
+    40% {
+      opacity: 1;
+    }
+    80% {
+      transform: translate(0, 20px);
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes on {
+      0% { opacity: 0 }
+      100% { opacity: 1 }
+  }
+
+
+
+  
+  /* Generated with Bounce.js. Edit at http://bouncejs.com#%7Bs%3A%5B%7BT%3A%22t%22%2Ce%3A%22b%22%2Cd%3A1000%2CD%3A500%2Cf%3A%7Bx%3A0%2Cy%3A-800%7D%2Ct%3A%7Bx%3A0%2Cy%3A0%7D%2Cs%3A1%2Cb%3A5%7D%5D%7D */
+  
+@keyframes animation { 
+    0% { transform: translate(-50%, -50%) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -800, 0, 1); }
+    33.33% { transform: translate(-50%, -50%) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -800, 0, 1); }
+    36% { transform: translate(-50%, -50%) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -454.427, 0, 1); }
+    38.61% { transform: translate(-50%, -50%) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -89.032, 0, 1); }
+    41.27% { transform: translate(-50%, -50%) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 151.531, 0, 1); }
+    43.88% { transform: translate(-50%, -50%) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 220.657, 0, 1); }
+    46.95% { transform: translate(-50%, -50%) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 156.947, 0, 1); }
+    49.95% { transform: translate(-50%, -50%) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 47.49, 0, 1); }
+    53.02% { transform: translate(-50%, -50%) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -32.238, 0, 1); }
+    56.02% { transform: translate(-50%, -50%) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -55.408, 0, 1); }
+    62.1% { transform: translate(-50%, -50%) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -11.718, 0, 1); }
+    68.1% { transform: translate(-50%, -50%) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 13.915, 0, 1); }
+    80.25% { transform: translate(-50%, -50%) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -3.494, 0, 1); }
+    92.39% { transform: translate(-50%, -50%) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0.877, 0, 1); }
+    100% { transform: translate(-50%, -50%) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); } 
+}
+  
+  

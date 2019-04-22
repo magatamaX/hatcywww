@@ -1,0 +1,243 @@
+@charset "utf-8";
+
+@import './../../../styles/fw.scss';
+
+.information {
+    @include pt(90px, 10vw);
+    border-top: 2px dashed rgba(#000, 0.1);
+    @include mt(10px);
+    position: relative;
+}
+
+.inner {
+    position: relative;
+    @include height(536px, auto);
+}
+
+.title {
+    position: absolute;
+    @include right(0, auto);
+    @include top(-10px, auto);
+
+    @include width(306px, 50vw);
+
+    transform-origin: bottom right;
+
+    opacity: 0;
+
+    &.on {
+        opacity: 1;
+        animation: aniRotate 1500ms linear both;
+    }
+
+    @include max(s) {
+        position: static;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.fukidashi {
+    position: absolute;
+    @include left(0);
+    @include top(0);
+
+    @include width(456px, auto);
+    background-color: $color_main;
+    border-radius: 10px;
+
+    @include pd(10px 30px 30px, 5vw);
+
+    box-shadow: -10px 10px 0 #ccc;
+
+    z-index: 0;
+
+    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -3000, 0, 0, 1);
+
+    &::before {
+        content: '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 40px 40px 0;
+        border-color: transparent #ccc transparent transparent;
+        z-index: 1;
+
+        position: absolute;
+        @include bottom(-45px);
+        @include right(50px);
+    }
+    &::after {
+        content: '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 40px 40px 0;
+        border-color: transparent $color_main transparent transparent;
+        z-index: 2;
+
+        position: absolute;
+        @include bottom(-40px);
+        @include right(40px);
+    }
+
+    &.on {
+        animation: aniLeft 1500ms linear both;
+    }
+
+    @include max(s) {
+        position: relative;
+        box-shadow: -2vw 2vw 0 #ccc;
+        margin-top: 8vw;
+    }
+}
+
+.list {
+
+}
+
+.item {
+    border-bottom: 1px solid rgba(#000, .3);
+    @include pd(20px 0, 10px 0);
+}
+
+.linkbox {
+    @include pr(30px);
+    color: #000;
+    display: block;
+
+    @include arrowAbs($color:$color_button_blue, $size:6, $width:1,$layout:right,$position:10,$direction:right);
+}
+
+.content {
+
+}
+
+.date {
+    line-height: 1;
+    @include fontSize(11px, 11px);
+    @include mb(5px);
+}
+
+.text {
+    line-height: 1.4;
+    max-height: 2.8em;
+    overflow: hidden;
+    @include fontSize(15px, 13px);
+}
+
+
+.hatchy {
+    position: absolute;
+    @include right(-93px);
+    @include bottom(0);
+
+    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 3000, 0, 0, 1);
+
+    &.on {
+        animation: aniRight 1500ms linear both;
+    }
+
+    @include max(s) {
+        position: static;
+        width: 70vw;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.buttonArea {
+    text-align: right;
+    @include mt(20px, 10px);
+}
+
+.pa {
+    position: absolute;
+    @include top(160px, 108vw);
+    @include right(250px, 66vw);
+    @include width(40px);
+
+    opacity: 0;
+
+    &.on {
+        animation: aniPa 1500ms linear 800ms 1 normal forwards;
+    }
+}
+
+.bg1 {
+    position: absolute;
+    top: 25%;
+    right: 5%;
+    width: 300px;
+    height: 200px;
+    background-image: url('/static/images/common/bg1.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    z-index: -1;
+}
+.bg2 {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 300px;
+    height: 200px;
+    background-image: url('/static/images/common/bg2.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    z-index: -1;
+}
+.bg1, .bg2 {
+    @include max(s) {
+        display: none;
+    }
+}
+  
+/* Generated with Bounce.js. Edit at http://bouncejs.com#%7Bs%3A%5B%7BT%3A%22t%22%2Ce%3A%22b%22%2Cd%3A1000%2CD%3A500%2Cf%3A%7Bx%3A-800%2Cy%3A0%7D%2Ct%3A%7Bx%3A0%2Cy%3A0%7D%2Cs%3A3%2Cb%3A5%7D%5D%7D */
+
+@keyframes aniPa {
+    0% { opacity: 1}
+    100% { opacity: 1;}
+}
+  
+@keyframes aniLeft { 
+    0%     { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -3000, 0, 0, 1); }
+    3.7%   { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -408.711, 0, 0, 1); }
+    7.31%  { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -99.648, 0, 0, 1); }
+    11.01% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 68.152, 0, 0, 1); }
+    14.61% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 110.078, 0, 0, 1); }
+    23.72% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 25.599, 0, 0, 1); }
+    32.83% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -12.021, 0, 0, 1); }
+    51.05% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1.313, 0, 0, 1); }
+    69.27% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -0.143, 0, 0, 1); }
+    87.49% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0.016, 0, 0, 1); }
+    100%   { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); } 
+}
+  
+@keyframes aniRight { 
+    0%     { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 3000, 0, 0, 1); }
+    3.7%   { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 408.711, 0, 0, 1); }
+    7.31%  { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 99.648, 0, 0, 1); }
+    11.01% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -68.152, 0, 0, 1); }
+    14.61% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -110.078, 0, 0, 1); }
+    23.72% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -25.599, 0, 0, 1); }
+    32.83% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 12.021, 0, 0, 1); }
+    51.05% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -1.313, 0, 0, 1); }
+    69.27% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0.143, 0, 0, 1); }
+    87.49% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -0.016, 0, 0, 1); }
+    100%   { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); } 
+}
+  
+@keyframes aniRotate { 
+    0% { transform: matrix3d(0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    4.3% { transform: matrix3d(0.723, 0.691, 0, 0, -0.691, 0.723, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    8.61% { transform: matrix3d(0.982, 0.19, 0, 0, -0.19, 0.982, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    12.91% { transform: matrix3d(0.997, -0.082, 0, 0, 0.082, 0.997, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    17.22% { transform: matrix3d(0.989, -0.146, 0, 0, 0.146, 0.989, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    28.33% { transform: matrix3d(0.999, -0.032, 0, 0, 0.032, 0.999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    39.44% { transform: matrix3d(1, 0.01, 0, 0, -0.01, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    61.66% { transform: matrix3d(1, -0.001, 0, 0, 0.001, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    83.98% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    100% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); } 
+}
