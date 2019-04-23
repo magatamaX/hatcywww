@@ -14,6 +14,7 @@ import {
 
 interface Props {
   list: any[],
+  posts: any,
   isAniKvDone: boolean,
   isAniInformationDone: boolean,
   isAniProfileDone: boolean,
@@ -41,6 +42,12 @@ class Top extends React.Component<Props, State> {
 
 
   static async getInitialProps() {
+
+    // Fetch Posts
+    const postRes = await fetch('http://localhost:3000/api/posts')
+    const postResults = await postRes.json()
+
+    // YouTube API
     const url = 'https://www.googleapis.com/youtube/v3/playlistItems'
     const playlistId = 'PL8Mym-l4uq978vdSETUg4B4VLKoVU2pW-'
 
@@ -50,10 +57,13 @@ class Top extends React.Component<Props, State> {
     params.set('maxResults', 20)
     params.set('key', 'AIzaSyAmg-DMiJAYOHX08aDQyy7dylhXvnmXmPo')
 
-    const res = await fetch(url + '?' + params.toString())
-    const result = await res.json()
+    const ytRes = await fetch(url + '?' + params.toString())
+    const ytResult = await ytRes.json()
 
-    return { list: result.items }
+    return {
+      posts: postResults,
+      list: ytResult.items
+    }
   }
 
   onChangeVideo(id: string): void {
