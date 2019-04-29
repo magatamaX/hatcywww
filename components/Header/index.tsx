@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import fw from './../../styles/fw.scss'
 import css from './style.scss'
 import Sns from './../common/Sns/index'
 import React from 'react'
@@ -67,30 +68,30 @@ class Header extends React.Component<Props, State> {
           <div className={`${css.spContents} ${this.state.showDetail ? css.on : ''}`}>
             <nav>
                 { this.props.top ? (
-                  <ul className={`${css.list} ${css.fFlex} ${css.fFlex_mg30} ${css.fFlex_mg0_s}`}>
+                  <ul className={`${css.list} ${fw.fFlex} ${fw.fFlex_mg30} ${fw.fFlex_mg0_s}`}>
                     {items.map((item, index) => (
-                      <li key={index} className={`${css.item} ${css.fFlex3} ${css.fFlex12_s}`}>
+                      <li key={index} className={`${css.item} ${fw.fFlex3} ${fw.fFlex12_s}`}>
                         <Link href={item.anchor}>
                           <a onClick={() => this.setState((state) => ({ showDetail: !state.showDetail }))} className={`${css.anchor} j-smooth-scroll`}>{item.display}</a>
                         </Link>
                       </li>
                     ))}
-                    <li className={`${css.item} ${css.itemSpOnly} ${css.fFlex3} ${css.fFlex12_s}`}>
+                    <li className={`${css.item} ${css.itemSpOnly} ${fw.fFlex3} ${fw.fFlex12_s}`}>
                         <Link href="/contact">
                           <a onClick={() => this.setState((state) => ({ showDetail: !state.showDetail }))} className={`${css.anchor}`}>出演依頼・お問合せ</a>
                         </Link>
                     </li>
                   </ul>
                 ) : (
-                  <ul className={`${css.list} ${css.fFlex} ${css.fFlex_mg30} ${css.fFlex_mg0_s}`}>
+                  <ul className={`${css.list} ${fw.fFlex} ${fw.fFlex_mg30} ${fw.fFlex_mg0_s}`}>
                     {items.map((item, index) => (
-                      <li key={index} className={`${css.item} ${css.fFlex3} ${css.fFlex12_s}`}>
+                      <li key={index} className={`${css.item} ${fw.fFlex3} ${fw.fFlex12_s}`}>
                         <Link href={item.href}>
                           <a className={`${css.anchor}`}>{item.display}</a>
                         </Link>
                       </li>
                     ))}
-                    <li className={`${css.item} ${css.itemSpOnly} ${css.fFlex3} ${css.fFlex12_s}`}>
+                    <li className={`${css.item} ${css.itemSpOnly} ${fw.fFlex3} ${fw.fFlex12_s}`}>
                         <Link href="/contact">
                           <a className={`${css.anchor}`}>出演依頼・お問合せ</a>
                         </Link>

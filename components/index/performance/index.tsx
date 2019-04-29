@@ -1,3 +1,4 @@
+import fw from './../../../styles/fw.scss'
 import css from './style.scss'
 import Slider from "react-slick";
 
@@ -33,7 +34,7 @@ const Performance = (
         onChangeVideo: (id: string) => void
     }) => (
     <div className={css.performance}>
-        <div className={`${css.fInner} ${css.inner}`}>
+        <div className={`${fw.fInner} ${css.inner}`}>
             <h2 className={`${css.title} ${isAniPerformanceDone ? css.on : ''}`}>
                 <img src="/static/images/index/performance/title.svg" alt="プロフィール" />
             </h2>

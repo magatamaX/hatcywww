@@ -1,11 +1,12 @@
 import Link from 'next/link'
+import fw from './../../../styles/fw.scss'
 import css from './style.scss'
 
 const Items = ({ list } : { list: {[key: string]: string}[] }) => (
-    <div className={css.fInner}>
-        <ul className={`${css.fFlex} ${css.fFlex_mg20} ${css.fFlex_mg0_s} ${css.list}`}>
+    <div className={fw.fInner}>
+        <ul className={`${fw.fFlex} ${fw.fFlex_mg20} ${fw.fFlex_mg0_s} ${css.list}`}>
             {list.map(( item, i ) => (
-                <li key={i} className={`${css.fFlex4} ${css.fFlex12_s} ${css.item}`}>
+                <li key={i} className={`${fw.fFlex4} ${fw.fFlex12_s} ${css.item}`}>
                     <Link href={item.path}>
                         <a className={css.box}>
                             <figure className={css.image}>

@@ -1,8 +1,9 @@
+import fw from './../../../styles/fw.scss'
 import css from './style.scss'
 import Sns from './../../../components/common/Sns/index'
 
 const Articles = ({ list } : { list: {[key: string]: string}[] }) => (
-    <div className={css.fInner}>
+    <div className={fw.fInner}>
         {list.map((item, i) => (
             <article key={i} id={item.id} className={css.article}>
                 <h3 className={css.title}>{item.title}</h3>

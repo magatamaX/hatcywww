@@ -1,8 +1,9 @@
+import fw from './../../../styles/fw.scss';
 import css from './style.scss'
 import Button from '../../common/Button/index'
 
 const Form = () => (
-    <div className={css.fInner}>
+    <div className={fw.fInner}>
         <form>
             <table className={css.table}>
                 <tbody className={css.tbody}>

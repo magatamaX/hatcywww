@@ -1,8 +1,9 @@
+import fw from './../../../styles/fw.scss'
 import css from './style.scss'
 
 const Historybox = () => (
     <section id="history">
-        <div className={css.fInner}>
+        <div className={fw.fInner}>
             <table className={css.table}>
                 <tbody className={css.tbody}>
                     <tr className={css.tr}>

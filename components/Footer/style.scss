@@ -1,6 +1,7 @@
 @charset "utf-8";
 
-@import './../../styles/fw.scss';
+@import './../../styles/setting/setting';
+@import './../../styles/mixin';
 
 .footer {
     @include height(100px, 8vh);

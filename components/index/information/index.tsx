@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import fw from './../../../styles/fw.scss'
 import css from './style.scss'
 import Button from './../../common/Button/index'
 
@@ -22,7 +23,7 @@ const list = [
 
 const Information = ({ isAniInformationDone } : { isAniInformationDone: boolean }) => (
     <div className={css.information}>
-        <div className={`${css.fInner} ${css.inner}`}>
+        <div className={`${fw.fInner} ${css.inner}`}>
             <h2 className={`${css.title} ${isAniInformationDone ? css.on : ''}`}>
                 <img src="/static/images/index/information/title.svg" alt="お知らせ" />
             </h2>

@@ -1,3 +1,4 @@
+import fw from './../../../styles/fw.scss'
 import css from './style.scss'
 import Button from './../../common/Button/index'
 
@@ -5,7 +6,7 @@ const introText = '1999年よりジャグリング、2008年より身体表現�
 
 const Profile = ({ isAniProfileDone } : { isAniProfileDone: boolean }) => (
     <div className={css.profile}>
-        <div className={`${css.fInner} ${css.inner}`}>
+        <div className={`${fw.fInner} ${css.inner}`}>
             <h2 className={`${css.title} ${isAniProfileDone ? css.on : ''}`}>
                 <img src="/static/images/index/profile/title.svg" alt="プロフィール" />
             </h2>

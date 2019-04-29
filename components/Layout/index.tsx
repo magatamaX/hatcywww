@@ -1,14 +1,14 @@
 import Header from './../Header/index'
 import Footer from './../Footer/index'
-import css from './style.scss'
+import fw from './../../styles/fw.scss'
 import React from 'react'
 
 const Layout = ({ children, top = false } : { children: any, top? : boolean }) => (
-  <div className={css.fw}>
-    <div className={css.container}>
+  <div className={fw.fw}>
+    <div className={fw.container}>
       <Header top={top} />
-      <main id="contents" className={css.fMax}>
-        <div className={css.wrapper}>
+      <main id="contents" className={fw.fMax}>
+        <div className={fw.wrapper}>
           {children}
         </div>
       </main>
