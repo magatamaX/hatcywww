@@ -72,12 +72,6 @@ exports = module.exports = nextApp => keystoneApp => {
 	const handle = nextApp.getRequestHandler();
 
     keystoneApp.post('/contact/post', (req, res, next) => {
-		console.log('POSTED')
-		console.log(req.body, res.body);
-		// const actualPage = '/contact'
-		// const queryParams = { contactFormPosted: true, body: req.body }
-		// nextApp.render(req, res, actualPage, queryParams)
-		
 
 		const newEnquiry = new Enquiry.model();
 		const updater = newEnquiry.getUpdateHandler(req);
@@ -87,9 +81,9 @@ exports = module.exports = nextApp => keystoneApp => {
 			fields: 'name, company, email, phone, enquiryType, message',
 			errorMessage: 'There was a problem submitting your enquiry:',
 		}, function (err) {
+			if (err) console.log(err)
 			const actualPage = '/contact'
-			const queryParams = { contactFormPosted: true, body: req.body }
-			nextApp.render(req, res, actualPage, queryParams)
+			nextApp.render(req, res, actualPage)
 		});
 	})
 

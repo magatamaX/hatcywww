@@ -4,8 +4,8 @@
 @import './../../../styles/mixin';
 
 .message {
-    @include fontSize(34px);
-    font-weight: 700;
+    @include fontSize(26px);
+    color: red;
     text-align: center;
     @include mg(80px 0);
 }
