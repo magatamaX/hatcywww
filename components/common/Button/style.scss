@@ -30,6 +30,13 @@
     @include pd(20px 0, 4vw 0);
 }
 
+.full {
+    @include width(100%);
+    @include fontSize(14px, 3vw);
+    line-height: 1.2;
+    @include pd(15px 0, 3vw 0);
+}
+
 .blue {
     border: 0;
     background-color: $color_button_blue;

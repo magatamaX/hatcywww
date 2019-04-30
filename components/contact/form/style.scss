@@ -109,3 +109,35 @@
     @include mg(80px 0, 20vw 0);
     text-align: center;
 }
+
+.lead {
+    @include mb(40px, 5vw);
+
+    span {
+        color: red;
+    }
+}
+
+.validate {
+    color: red;
+}
+
+.shield {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(#000, 0.2);
+    width: 100%;
+    height: 100%;
+    z-index: 20;
+}
+
+.finalMessage {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background-color: #fff;
+    @include width(400px);
+    @include height(200px);
+    z-index: 21;
+}

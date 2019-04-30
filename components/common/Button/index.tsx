@@ -11,6 +11,8 @@ const Button = (
             css.large :
             size === "medium" ?
             css.medium :
+            size === "full" ?
+            css.full :
             ''
         } ${
             color === "blue" ?

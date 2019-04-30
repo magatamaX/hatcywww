@@ -24,7 +24,7 @@ keystone.init({
 	'emails': 'templates/emails',
 
 	'auto update': true,
-	'mongo': process.env.MONGO_URI || 'mongodb://admin:OraQEgbhzIXfMdOx@magatamaclubcluster-shard-00-00-c0uxp.mongodb.net:27017,magatamaclubcluster-shard-00-01-c0uxp.mongodb.net:27017,magatamaclubcluster-shard-00-02-c0uxp.mongodb.net:27017/hatchy?ssl=true&replicaSet=magatamaclubcluster-shard-0&authSource=admin&retryWrites=true',
+	'mongo': process.env.MONGO_URI,
 	'session': true,
 	'auth': true,
 	'user model': 'User',
