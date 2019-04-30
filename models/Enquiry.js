@@ -9,19 +9,48 @@ var Types = keystone.Field.Types;
 var Enquiry = new keystone.List('Enquiry', {
 	nocreate: true,
 	noedit: true,
+	label: 'お問い合わせ',
+	plural: 'お問い合わせ',
 });
 
 Enquiry.add({
-	name: { type: Types.Name, required: true },
-	email: { type: Types.Email, required: true },
-	phone: { type: String },
-	enquiryType: { type: Types.Select, options: [
-		{ value: 'message', label: 'Just leaving a message' },
-		{ value: 'question', label: 'I\'ve got a question' },
-		{ value: 'other', label: 'Something else...' },
-	] },
-	message: { type: Types.Markdown, required: true },
-	createdAt: { type: Date, default: Date.now },
+	name: {
+		type: Types.Name,
+		required: true,
+		label: '氏名'
+	},
+	company: {
+		type: String,
+		label: 'ご所属（会社名等）'
+	},
+	email: {
+		type: Types.Email,
+		required: true,
+		label: 'メールアドレス'
+	},
+	phone: {
+		type: String,
+		label: '電話番号'
+	},
+	enquiryType: {
+		type: Types.Select,
+		label: 'お問合せの種類',
+		required: true,
+		options: [
+			{ value: 'request', label: 'お仕事のご依頼' },
+			{ value: 'other', label: 'その他のお問い合わせ' }
+		]
+	},
+	message: {
+		type: Types.Markdown,
+		required: true,
+		label: 'メッセージ'
+	},
+	createdAt: {
+		type: Date,
+		default: Date.now,
+		label: '受信日時'
+	},
 });
 
 Enquiry.schema.pre('save', function (next) {
@@ -58,12 +87,12 @@ Enquiry.schema.methods.sendNotificationEmail = function (callback) {
 			templateName: 'enquiry-notification',
 			transport: 'mailgun',
 		}).send({
-			to: admins,
+			to: process.env.MAILGUN_SENDTO_ADDRESS,
 			from: {
-				name: 'TokushimaHatchyOfficialSite',
-				email: 'contact@tokushimahatchyofficialsite.com',
+				name: 'お問合せフォーム',
+				email: 'noreply@mail.tokushimahatchy.com',
 			},
-			subject: 'New Enquiry for TokushimaHatchyOfficialSite',
+			subject: '【お問合せフォーム】新しいお問合せを受信しました。',
 			enquiry: enquiry,
 			brand: brand,
 		}, callback);

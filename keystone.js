@@ -16,21 +16,23 @@ const keystone = require('keystone');
 
 keystone.init({
 	'name': 'TokushimaHatchyOfficialSite',
-	'brand': 'TokushimaHatchyOfficialSite',
+	'brand': '徳島はっちーオフィシャルサイト',
 
-	// 'less': 'public',
-	// 'static': 'public',
-	// 'favicon': 'public/favicon.ico',
-	// 'views': 'templates/views',
-	// 'view engine': 'pug',
+	'views': 'templates/views',
+	'view engine': 'pug',
 
 	'emails': 'templates/emails',
 
 	'auto update': true,
-	'mongo': process.env.MONGO_URI || 'mongodb://admin:OraQEgbhzIXfMdOx@magatamaclubcluster-shard-00-00-c0uxp.mongodb.net:27017,magatamaclubcluster-shard-00-01-c0uxp.mongodb.net:27017,magatamaclubcluster-shard-00-02-c0uxp.mongodb.net:27017/test?ssl=true&replicaSet=magatamaclubcluster-shard-0&authSource=admin&retryWrites=true',
+	'mongo': process.env.MONGO_URI || 'mongodb://admin:OraQEgbhzIXfMdOx@magatamaclubcluster-shard-00-00-c0uxp.mongodb.net:27017,magatamaclubcluster-shard-00-01-c0uxp.mongodb.net:27017,magatamaclubcluster-shard-00-02-c0uxp.mongodb.net:27017/hatchy?ssl=true&replicaSet=magatamaclubcluster-shard-0&authSource=admin&retryWrites=true',
 	'session': true,
 	'auth': true,
 	'user model': 'User',
+
+	'wysiwyg menubar': true,
+	'wysiwyg cloudinary images': true,
+
+  	'trust proxy' : true,
 });
 
 // Load your project's Models
@@ -56,10 +58,9 @@ app
 
 		// Configure the navigation bar in Keystone's Admin UI
 		keystone.set('nav', {
-			posts: ['posts', 'post-categories'],
-			galleries: 'galleries',
-			enquiries: 'enquiries',
-			users: 'users',
+			'投稿': ['posts', 'profiles', 'histories'],
+			'お問合せ': 'enquiries',
+			'ユーザー': 'users',
 		});
 
 		// Start Keystone to connect to your database and initialise the web server

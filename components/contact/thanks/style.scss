@@ -1,0 +1,111 @@
+@charset "utf-8";
+
+@import './../../../styles/setting/setting';
+@import './../../../styles/mixin';
+
+.table {
+    @include width(100%, auto);
+    table-layout: fixed;
+
+    @include max(s) {
+        display: block;
+    }
+}
+
+.tbody {
+    @include max(s) {
+        display: block;
+    }
+}
+
+.tr {
+    @include max(s) {
+        display: block;
+    }
+}
+
+.th {
+    @include width(200px, auto);
+
+    @include max(s) {
+        display: block;
+        padding: 15px 0 0;
+    }
+}
+
+.td {
+    @include max(s) {
+        display: block;
+        padding: 0;
+    }
+}
+
+.textbox {
+    @include width(100%);
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 5px !important;
+}
+
+.textarea {
+    @include width(100%);
+    @include height(200px);
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 5px !important;
+}
+
+.requireIcon {
+    color: red;
+    @include ml(2px);
+}
+
+.selectWrapper {
+	overflow: hidden;
+	width: 15em;
+    text-align: center;
+    position: relative;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+    background: #ffffff;
+    
+    &::before {
+        position: absolute;
+        top: 0.8em;
+        right: 0.9em;
+        width: 0;
+        height: 0;
+        padding: 0;
+        content: '';
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 6px solid #666666;
+        pointer-events: none;
+    }
+}
+
+.selectbox {
+	width: 100%;
+	padding-right: 1em;
+	cursor: pointer;
+	text-indent: 0.01px;
+	text-overflow: ellipsis;
+	border: none;
+	outline: none;
+	background: transparent;
+	background-image: none;
+	box-shadow: none;
+	-webkit-appearance: none;
+    appearance: none;
+    padding: 0 38px 0 8px;
+    color: #666666;
+    
+    &::-ms-expand {
+        display: none;
+    }
+}
+
+.button {
+    @include mg(80px 0, 20vw 0);
+    text-align: center;
+}

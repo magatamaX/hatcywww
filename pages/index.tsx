@@ -44,8 +44,8 @@ class Top extends React.Component<Props, State> {
   static async getInitialProps() {
 
     // Fetch Posts
-    const postRes = await fetch('http://localhost:3000/api/posts')
-    const postResults = await postRes.json()
+    // const postRes = await fetch('http://localhost:3000/api/posts')
+    // const postResults = await postRes.json()
 
     // YouTube API
     const url = 'https://www.googleapis.com/youtube/v3/playlistItems'
@@ -61,7 +61,7 @@ class Top extends React.Component<Props, State> {
     const ytResult = await ytRes.json()
 
     return {
-      posts: postResults,
+      posts: [],
       list: ytResult.items
     }
   }

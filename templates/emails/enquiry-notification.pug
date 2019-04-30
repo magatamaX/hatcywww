@@ -1,23 +1,23 @@
 html
 	head
 	body
-		h1 Hi %recipient.firstName%,
-		p.text-larger An enquiry was just submitted to #{brand}:
+		p.text-larger WEBサイトのお問合せフォームより、<br>以下の内容のお問合せを受信しました:
+		p ----------------------------------------
+		if enquiry.enquiryType
+			p.text-larger お問合せの種類:
+				| <strong> #{enquiry._.enquiryType.format()} </strong>
+		if enquiry.company
+			p.text-larger ご所属（会社名等）:#{enquiry.company}
 		if enquiry.name.full || enquiry.email
-			p.text-larger From
+			p.text-larger お名前：
 				if enquiry.name.full
 					| <strong> #{enquiry.name.full}</strong>
-				if enquiry.name.full && enquiry.email
-					|  (
+			p.text-larger メールアドレス：
 				if enquiry.email
-					| <a href="mailto:#{enquiry.email}">#{enquiry.email}</a>
-				if enquiry.name.full && enquiry.email
-					| )
+					| <a href="mailto:#{enquiry.email}"><strong>#{enquiry.email}</strong></a>
 		if enquiry.phone
-			p.text-larger Phone: #{enquiry.phone}
-		if enquiry.enquiryType
-			p.text-larger #{enquiry._.enquiryType.format()}
+			p.text-larger 電話番号: #{enquiry.phone}
 		if enquiry.message
-			.text-larger !{enquiry.message.html}
-		p.text-muted Sent #{enquiry._.createdAt.format()}
+			.text-larget メッセージ：<br>!{enquiry.message.html}
+		p.text-muted 受信日時： #{enquiry._.createdAt.format()}
 		p &nbsp;
