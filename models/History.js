@@ -9,7 +9,7 @@ var Types = keystone.Field.Types;
 var History = new keystone.List('History', {
 	map: { name: 'year' },
 	autokey: { path: 'key', from: 'year', unique: true },
-	defaultSort: 'year',
+	defaultSort: '-year',
 	label: '活動履歴',
 	plural: '活動履歴',
 });
@@ -17,7 +17,7 @@ var History = new keystone.List('History', {
 History.add({
 	year: {
 		type: Types.Select,
-		options: '2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028',
+		options: '2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028',
 		index: true,
 		label: '年'
 	},

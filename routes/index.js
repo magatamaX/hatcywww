@@ -41,20 +41,73 @@ const getPosts = () => {
 		})
 }
 
+const Profile = keystone.list('Profile');
+const getProfile = () => {
+	return Promise.resolve().then(() => {
+		return Profile.model
+			.find()
+			.exec((err, results) => {
+				if (err) throw err
+				return results
+			})
+		})
+}
+
+const History = keystone.list('History');
+const getHistory = () => {
+	return Promise.resolve().then(() => {
+		return History.model
+			.find()
+			.sort('-year')
+			.exec((err, results) => {
+				if (err) throw err
+				return results
+			})
+		})
+}
+
 const typeDefs = gql`
+type Image {
+	secure_url: String
+	url: String
+	resource_type: String
+	format: String
+	height: String
+	width: String
+	signature: String
+	version: String
+	public_id: String
+}
 type Post {
-	title: String!
-	text: String!
-	_id: String!
+	_id: String
+	slug: String
+	title: String
+	state: String
+	author: String
+	content: String
+	publishedDate: String
+	image: Image
+}
+type Profile {
+	title: String
+	content: String
+}
+type History {
+	year: String
+	content: String
 }
 type Query {
-  posts: [Post]
+	posts: [Post]
+	profile: [Profile]
+	history: [History]
 }
 `;
 
 const resolvers = {
 	Query: {
-		posts: () => getPosts()
+		posts: () => getPosts(),
+		profile: () => getProfile(),
+		history: () => getHistory()
 	},
 };
 
