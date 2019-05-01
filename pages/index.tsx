@@ -11,6 +11,7 @@ import { connect } from 'react-redux'
 import { load, aniReset, aniKv, aniInformation, aniProfile, aniPerformance, showPageTopBtn, hidePageTopBtn } from '../store'
 import ApolloClient from 'apollo-boost'
 import gql from 'graphql-tag'
+import Head from 'next/head'
 
 interface Props {
   list: any[],
@@ -177,6 +178,9 @@ class Top extends React.Component<Props, State> {
   render() {
     return (
       <Layout top={true}>
+        <Head>
+          <title>パフォーミングアーティスト 徳島はっちー</title>
+        </Head>
         <section id="kv" ref={this.kvRef}>
           <Kv isAniKvDone={this.props.isAniKvDone} />
         </section>

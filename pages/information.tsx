@@ -5,10 +5,14 @@ import ApolloClient from 'apollo-boost'
 import gql from 'graphql-tag'
 import React from 'react'
 import fetch from 'isomorphic-unfetch'
+import Head from 'next/head'
 
 const Information = ({ error, posts } : { error: any, posts: any[] }) => {
   return (
     <Layout>
+      <Head>
+        <title>お知らせ｜パフォーミングアーティスト 徳島はっちー</title>
+      </Head>
       <section>
         <Titlebox text="お知らせ" engText="Information" />
         { error ? (

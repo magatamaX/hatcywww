@@ -6,9 +6,13 @@ import Buttons from '../components/post/buttons/index'
 import ApolloClient from 'apollo-boost'
 import gql from 'graphql-tag'
 import React from 'react'
+import Head from 'next/head'
 
 const Post = ({ currentPost } : { currentPost: any }) => (
   <Layout>
+    <Head>
+      <title>{currentPost.title || ''}｜お知らせ｜パフォーミングアーティスト 徳島はっちー</title>
+    </Head>
     <section>
       <Titlebox text="お知らせ" engText="Information" />
       <Articles post={currentPost} />

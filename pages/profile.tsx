@@ -6,10 +6,14 @@ import ApolloClient from 'apollo-boost'
 import gql from 'graphql-tag'
 import React from 'react'
 import fetch from 'isomorphic-unfetch'
+import Head from 'next/head'
 
 const Profile = ({ error, profile, history } : { error: any, profile: any[], history: any[] }) => {
   return (
     <Layout>
+      <Head>
+        <title>プロフィール｜パフォーミングアーティスト 徳島はっちー</title>
+      </Head>
       <section>
         <Titlebox text="プロフィール" engText="Profile" />
         { error ? (
