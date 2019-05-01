@@ -37,6 +37,15 @@
     > p + p {
         @include mt(40px, 20px);
     }
+    
+    > p img {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    iframe {
+        max-width: 100%;
+    }
 }
 
 .snsArea {

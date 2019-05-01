@@ -1,6 +1,6 @@
 import fw from './../../../styles/fw.scss'
 import css from './style.scss'
-import Sns from './../../../components/common/Sns/index'
+import Share from './../../../components/common/Share/index'
 import moment from 'moment'
 
 const Articles = ({ post } : { post: any }) => (
@@ -20,7 +20,7 @@ const Articles = ({ post } : { post: any }) => (
             <div className={css.snsArea}>
                 <p className={css.snsTitle}>この記事をシェアする</p>
                 <div className={css.sns}>
-                    <Sns margin={40} />
+                    <Share margin={40} />
                 </div>
             </div>
         </article>

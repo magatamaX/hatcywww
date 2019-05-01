@@ -66,7 +66,7 @@ class Header extends React.Component<Props, State> {
             </div>
           </div>
           <div className={`${css.spContents} ${this.state.showDetail ? css.on : ''}`}>
-            <nav>
+            <nav className={css.nav}>
                 { this.props.top ? (
                   <ul className={`${css.list} ${fw.fFlex} ${fw.fFlex_mg30} ${fw.fFlex_mg0_s}`}>
                     {items.map((item, index) => (

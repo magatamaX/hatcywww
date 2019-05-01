@@ -4,6 +4,7 @@
 @import './../../../styles/mixin';
 
 .performance {
+    @include pt(0, 10vw);
     border-top: 2px dashed rgba(#000, 0.1);
     position: relative;
 }
