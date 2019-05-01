@@ -32,13 +32,10 @@
     }
 }
 
-.youtube {
-    svg {
-        fill: #282828;
-    }
+.twitter {
     &:hover {
         svg {
-            fill: $color_youtube;
+            fill: $color_twitter;
         }
     }
 }

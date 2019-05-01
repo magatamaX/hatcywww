@@ -13,7 +13,6 @@ declare module 'mgn-smooth-scroll' {
   export default content;
 }
 
-declare module 'simple-react-validator' {
-  const content: any;
-  export default content;
+interface SimpleReactValidator {
+  content: any;
 }

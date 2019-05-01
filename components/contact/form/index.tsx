@@ -2,11 +2,13 @@ import fw from './../../../styles/fw.scss';
 import css from './style.scss'
 import Button from '../../common/Button/index'
 import React from 'react'
-import SimpleReactValidator from 'simple-react-validator'
+import Validator from '../../../lib/validator'
 import Transition from 'react-transition-group/Transition';
 import fetch from 'isomorphic-unfetch'
 import Thanks from './../thanks/index'
 import Error from './../error/index'
+
+const SimpleReactValidator: any = Validator;
 
 interface Props {
 

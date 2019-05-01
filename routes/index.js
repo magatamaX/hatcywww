@@ -98,6 +98,8 @@ type Post {
 	title: String
 	state: String
 	author: String
+	keywords: [String]
+	brief: String
 	content: String
 	publishedDate: Date
 	image: Image

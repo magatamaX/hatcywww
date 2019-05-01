@@ -45,6 +45,15 @@ Post.add({
 		type: Types.CloudinaryImage,
 		label: '画像'
 	},
+	keywords: {
+		type: Types.TextArray,
+		label: 'キーワード'
+	},
+	brief: {
+		type: Types.Textarea,
+		height: 100,
+		label: '概要'	
+	},
 	content: {
 		type: Types.Html,
 		wysiwyg: true,
