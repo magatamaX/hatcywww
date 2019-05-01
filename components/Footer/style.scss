@@ -6,6 +6,8 @@
 .footer {
     @include height(100px, 8vh);
     background-color: #fff;
+    position: relative;
+    z-index: 10;
 }
 
 .inner {

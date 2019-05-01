@@ -8,7 +8,7 @@ import React from 'react'
 import fetch from 'isomorphic-unfetch'
 import mgnSmoothScroll from 'mgn-smooth-scroll';
 import { connect } from 'react-redux'
-import { load, aniReset, aniKv, aniInformation, aniProfile, aniPerformance, showPageTopBtn, hidePageTopBtn } from '../store'
+import { aniReset, aniKv, aniInformation, aniProfile, aniPerformance, showPageTopBtn, hidePageTopBtn } from '../store'
 import ApolloClient from 'apollo-boost'
 import gql from 'graphql-tag'
 import Head from 'next/head'
@@ -20,7 +20,12 @@ interface Props {
   isAniKvDone: boolean,
   isAniInformationDone: boolean,
   isAniProfileDone: boolean,
-  isAniPerformanceDone: boolean
+  isAniPerformanceDone: boolean,
+  aniKv: Function,
+  aniInformation: Function,
+  aniProfile: Function,
+  aniPerformance: Function,
+  aniReset: Function
 }
 interface State {
   currentVideo: string,
@@ -32,7 +37,7 @@ class Top extends React.Component<Props, State> {
     super(props)
 
     this.state = {
-      currentVideo: props.list[0].snippet.resourceId.videoId
+      currentVideo: props.list[0].snippet.resourceId.videoId || ''
     }
   }
 
@@ -44,6 +49,19 @@ class Top extends React.Component<Props, State> {
 
 
   static async getInitialProps() {
+
+    // YouTube API
+    const url = 'https://www.googleapis.com/youtube/v3/playlistItems'
+    const playlistId = 'PL8Mym-l4uq978vdSETUg4B4VLKoVU2pW-'
+    const params: any = new URLSearchParams()
+    params.set('part', 'snippet')
+    params.set('playlistId', playlistId)
+    params.set('maxResults', 20)
+    params.set('key', 'AIzaSyAmg-DMiJAYOHX08aDQyy7dylhXvnmXmPo')
+
+    const ytRes = await fetch(url + '?' + params.toString())
+    const ytResult = await ytRes.json()
+
 
     // Fetch Posts
     const client = new ApolloClient({
@@ -80,19 +98,6 @@ class Top extends React.Component<Props, State> {
       }
     });
 
-    // YouTube API
-    const url = 'https://www.googleapis.com/youtube/v3/playlistItems'
-    const playlistId = 'PL8Mym-l4uq978vdSETUg4B4VLKoVU2pW-'
-
-    const params: any = new URLSearchParams()
-    params.set('part', 'snippet')
-    params.set('playlistId', playlistId)
-    params.set('maxResults', 20)
-    params.set('key', 'AIzaSyAmg-DMiJAYOHX08aDQyy7dylhXvnmXmPo')
-
-    const ytRes = await fetch(url + '?' + params.toString())
-    const ytResult = await ytRes.json()
-
     return {
       ...props,
       list: ytResult.items
@@ -112,10 +117,10 @@ class Top extends React.Component<Props, State> {
   ani(): void {
 
     const targets: any[] = [
-      [this.kvRef, [0.5], this.props['aniKv']],
-      [this.informationRef, [0.7], this.props['aniInformation']],
-      [this.profileRef, [0.7], this.props['aniProfile']],
-      [this.performanceRef, [0.3], this.props['aniPerformance']],
+      [this.kvRef, [0.5], this.props.aniKv],
+      [this.informationRef, [0.7], this.props.aniInformation],
+      [this.profileRef, [0.7], this.props.aniProfile],
+      [this.performanceRef, [0.3], this.props.aniPerformance],
     ]
 
     const setObserver = ( target: any, threshold: number[], func: Function ) => {
@@ -152,7 +157,7 @@ class Top extends React.Component<Props, State> {
 
   componentDidMount() {
 
-    this.props['aniReset']()
+    this.props.aniReset()
     this.ani()
 
     this.smoothScroll = new mgnSmoothScroll(
@@ -216,7 +221,7 @@ const mapStateToProps = (state: any) => {
   return { ...state }
 }
 const mapDispatchToProps = {
-  load, aniReset, aniKv, aniInformation, aniProfile, aniPerformance, showPageTopBtn, hidePageTopBtn
+  aniReset, aniKv, aniInformation, aniProfile, aniPerformance, showPageTopBtn, hidePageTopBtn
 }
 
 export default connect(

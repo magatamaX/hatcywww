@@ -2,24 +2,6 @@ import fw from './../../../styles/fw.scss'
 import css from './style.scss'
 import Slider from "react-slick";
 
-const settings: any = {
-    className: "center",
-    centerMode: true,
-    infinite: true,
-    slidesToShow: 5,
-    speed: 500,
-    dots: false,
-    focusOnSelect: true,
-    responsive: [
-        {
-            breakpoint: 768,
-            settings: {
-                slidesToShow: 3,
-            }
-        }
-    ]
-};
-
 const Performance = (
     {
         isAniPerformanceDone,
@@ -58,7 +40,27 @@ const Performance = (
             </div>
         </div>
         <div className={css.playlist}>
-            <Slider {...settings}>
+            <Slider
+                className="center"
+                centerMode={true}
+                infinite={true}
+                slidesToShow={5}
+                swipeToSlide={true}
+                speed={500}
+                dots={false}
+                focusOnSelect={true}
+                afterChange={( index: number ) => {
+                    onChangeVideo( list[index].snippet.resourceId.videoId )
+                }}
+                responsive={[
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 3,
+                        }
+                    }
+                ]}
+            >
                 {list.map((item, i) => (
                     <div className={css.slideItem} key={i} onClick={() => onChangeVideo( item.snippet.resourceId.videoId )}>
                         <div className={`slick-thumbBlock ${css.thumbBlock}`}>

@@ -2,7 +2,6 @@ import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 const initialState = {
-    isLoaded: false,
     isAniKvDone: false,
     isAniInformationDone: false,
     isAniProfileDone: false,
@@ -14,10 +13,6 @@ const initialState = {
 // REDUCERS
 export const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'LOAD':
-            return Object.assign({}, state, {
-                isLoaded: true
-            })
         case 'ANI_RESET':
             return Object.assign({}, state, {
                 isAniKvDone: false,
@@ -55,10 +50,6 @@ export const reducer = (state = initialState, action) => {
 }
 
 // ACTIONS
-export const load = () => {
-    return { type: 'LOAD' }
-}
-
 export const aniReset = () => {
     return { type: 'ANI_RESET' }
 }

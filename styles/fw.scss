@@ -13,6 +13,10 @@
 @import "mixin";
 @import "base";
 
+body {
+	position: relative;
+}
+
 .fw {
 	min-width: $width_main + px;
 	overflow: hidden;

@@ -2,6 +2,7 @@ import React from 'react';
 import App, { Container } from 'next/app';
 import withReduxStore from '../lib/with-redux-store'
 import { Provider } from 'react-redux'
+import Pagetopbutton from '../components/common/Pagetopbutton/index'
 
 interface Props {
   Component: any,
@@ -17,6 +18,7 @@ class Hatchy extends App<Props> {
       <Container>
         <Provider store={reduxStore}>
           <Component {...pageProps} />
+          <Pagetopbutton />
         </Provider>
       </Container>
     )
