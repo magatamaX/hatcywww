@@ -2,9 +2,7 @@ import fw from './../../../styles/fw.scss'
 import css from './style.scss'
 import Button from './../../common/Button/index'
 
-const introText = '1999年よりジャグリング、2008年より身体表現の向上を求めパントマイムとクラウンを 学ぶ。アートマイムをJIDAI氏、日本舞踊を藤間玉左保氏に師事。2006年デビュー 徳島県内各地の小学校、高齢者施設などを訪問し活動開始。2017年より小児病棟でのパフォーマンス活動を本格的に開始。'
-
-const Profile = ({ isAniProfileDone } : { isAniProfileDone: boolean }) => (
+const Profile = ({ isAniProfileDone, profile } : { isAniProfileDone: boolean, profile: any[] }) => (
     <div className={css.profile}>
         <div className={`${fw.fInner} ${css.inner}`}>
             <h2 className={`${css.title} ${isAniProfileDone ? css.on : ''}`}>
@@ -17,7 +15,7 @@ const Profile = ({ isAniProfileDone } : { isAniProfileDone: boolean }) => (
                     <span className={css.nameEnglish}>TOKUSHIMA HATCHY</span>
                 </dt>
                 <dd className={css.intro}>
-                    <p>{introText}</p>
+                    <div dangerouslySetInnerHTML={{__html: profile[0] ? profile[0].content : ''}} />
                 </dd>
                 <dd className={css.buttonArea}>
                     <Button

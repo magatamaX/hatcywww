@@ -3,43 +3,70 @@ import fetch from 'isomorphic-unfetch'
 import Titlebox from '../components/common/Titlebox/index'
 import Articles from '../components/post/articles/index'
 import Buttons from '../components/post/buttons/index'
+import ApolloClient from 'apollo-boost'
+import gql from 'graphql-tag'
+import React from 'react'
 
-const articles = [
-  {
-    id: "article_001",
-    title: '単独公演vol.2『求変患者』＠徳島県立文化の森、ご来場いただいた皆様ありがとうございました！！！',
-    date: '2018.2.24',
-    html: `
-      <p><img src="/static/images/post/1.jpg" alt="" /></p>
-      <p>ここに本文の文章が入ります。ここに本文の文章が入ります。ここに本文の文章が入ります。ここに本文の文章が入ります。ここに本文の文章が入ります。ここに本文の文章が入ります。ここに本文の文章が入ります。ここに本文の文章が入ります。ここに本文の文章が入ります。ここに本文の文章が入ります。ここに本文の文章が入ります。</p>
-      <p><img src="/static/images/post/2.jpg" alt="" /></p>
-      <p>ここに本文の文章が入ります。ここに本文の文章が入ります。ここに本文の文章が入ります。ここに本文の文章が入ります。ここに本文の文章が入ります。ここに本文の文章が入ります。ここに本文の文章が入ります。ここに本文の文章が入ります。ここに本文の文章が入ります。ここに本文の文章が入ります。ここに本文の文章が入ります。</p>
-      <p><img src="/static/images/post/3.jpg" alt="" /></p>
-      <p>ここに本文の文章が入ります。ここに本文の文章が入ります。ここに本文の文章が入ります。ここに本文の文章が入ります。ここに本文の文章が入ります。ここに本文の文章が入ります。ここに本文の文章が入ります。ここに本文の文章が入ります。ここに本文の文章が入ります。ここに本文の文章が入ります。ここに本文の文章が入ります。</p>
-    `,
-  }
-]
-
-const Post = ()=> (
+const Post = ({ currentPost } : { currentPost: any }) => (
   <Layout>
     <section>
       <Titlebox text="お知らせ" engText="Information" />
-      <Articles list={articles} />
+      <Articles post={currentPost} />
       <Buttons />
     </section>
   </Layout>
 )
 
-Post.getInitialProps = async function(context: any) {
-  console.log(context)
-  const { id } = context.query
-  const res = await fetch(`https://api.tvmaze.com/shows/${id}`)
-  const show = await res.json()
+Post.getInitialProps = async ({ req }:{ req: any }) => {
 
-  console.log(show);
-  console.log(`Fetched show: ${show.name}`)
+  // Fetch Current Post
+  const client = new ApolloClient({
+    uri: 'http://localhost:4000/graphql',
+    fetchOptions: {
+      fetch: fetch as any
+    }
+  });
+  const props = await client.query({
+    query: gql`
+      query Query {
+        currentPost(slug:"${req.params.slug}") {
+          _id
+          slug
+          title
+          state
+          author
+          content
+          publishedDate
+          image {
+            secure_url
+            url
+            resource_type
+            format
+            height
+            width
+            signature
+            version
+            public_id
+          }
+        }
+      }
+    `,
+  })
+  .then(result => {
+    return {
+      currentPost: result.data.currentPost
+    }
+  })
+  .catch(error => {
+    return {
+      error,
+      currentPost: {}
+    }
+  });
 
-  return { show }
+  return {
+    ...props
+  }
 }
 
 export default Post

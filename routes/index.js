@@ -26,17 +26,30 @@ const { ApolloServer, gql } = require('apollo-server-express');
 const express = require('express');
 const graphQLServer = express();
 
-
 const Post = keystone.list('Post');
-const getPosts = () => {
+const getPosts = (skip, limit) => {
 	return Promise.resolve().then(() => {
 		return Post.model
 			.find()
 			.where('state', 'published')
 			.sort('-publishedDate')
+			.skip(skip)
+			.limit(limit)
 			.exec((err, results) => {
 				if (err) throw err
 				return results
+			})
+		})
+}
+const getCurrentPost = (slug) => {
+	return Promise.resolve().then(() => {
+		return Post.model
+			.findOne({
+				slug: slug
+			})
+			.exec((err, result) => {
+				if (err) throw err
+				return result
 			})
 		})
 }
@@ -67,6 +80,7 @@ const getHistory = () => {
 }
 
 const typeDefs = gql`
+scalar Date
 type Image {
 	secure_url: String
 	url: String
@@ -85,7 +99,7 @@ type Post {
 	state: String
 	author: String
 	content: String
-	publishedDate: String
+	publishedDate: Date
 	image: Image
 }
 type Profile {
@@ -97,7 +111,8 @@ type History {
 	content: String
 }
 type Query {
-	posts: [Post]
+	posts(limit: Int, skip: Int): [Post]
+	currentPost(slug: String!): Post 
 	profile: [Profile]
 	history: [History]
 }
@@ -105,7 +120,8 @@ type Query {
 
 const resolvers = {
 	Query: {
-		posts: () => getPosts(),
+		posts: (_, { skip, limit }) => getPosts(skip, limit),
+		currentPost: ( _, { slug }) => getCurrentPost(slug),
 		profile: () => getProfile(),
 		history: () => getHistory()
 	},
@@ -124,7 +140,7 @@ exports = module.exports = nextApp => keystoneApp => {
 	// Next request handler
 	const handle = nextApp.getRequestHandler();
 
-    keystoneApp.post('/contact/post', (req, res, next) => {
+	keystoneApp.post('/contact/post', (req, res, next) => {
 
 		const newEnquiry = new Enquiry.model();
 		const updater = newEnquiry.getUpdateHandler(req);
@@ -138,6 +154,12 @@ exports = module.exports = nextApp => keystoneApp => {
 			const actualPage = '/contact'
 			nextApp.render(req, res, actualPage)
 		});
+	})
+
+	keystoneApp.get('/information/p/:slug', (req, res) => {
+		const actualPage = '/post'
+		const queryParams = { slug: req.params.slug }
+		nextApp.render(req, res, actualPage, queryParams)
 	})
 
 	keystoneApp.get('*', (req, res) => {

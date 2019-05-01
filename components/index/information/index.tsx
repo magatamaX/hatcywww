@@ -2,26 +2,9 @@ import Link from 'next/link'
 import fw from './../../../styles/fw.scss'
 import css from './style.scss'
 import Button from './../../common/Button/index'
+import moment from 'moment'
 
-const list = [
-    {
-        date: "2019.02.09",
-        text: "徳島はっちー単独公演vol.3『引き篭り家族』終演～ ご来場下さった皆様、本当に有り難うございました。",
-        href: "/p/975"
-    },
-    {
-        date: "2019.02.09",
-        text: "徳島はっちー単独公演vol.4『引き篭り家族』終演～ ご来場下さった皆様、本当に有り難うございました。",
-        href: ""
-    },
-    {
-        date: "2019.02.09",
-        text: "徳島はっちー単独公演vol.3『引き篭り家族』終演～ ご来場下さった皆様、本当に有り難うございました。",
-        href: ""
-    },
-]
-
-const Information = ({ isAniInformationDone } : { isAniInformationDone: boolean }) => (
+const Information = ({ isAniInformationDone, posts } : { isAniInformationDone: boolean, posts: any[] }) => (
     <div className={css.information}>
         <div className={`${fw.fInner} ${css.inner}`}>
             <h2 className={`${css.title} ${isAniInformationDone ? css.on : ''}`}>
@@ -29,14 +12,14 @@ const Information = ({ isAniInformationDone } : { isAniInformationDone: boolean 
             </h2>
             <div className={`${css.fukidashi} ${isAniInformationDone ? css.on : ''}`}>
                 <ul className={css.list}>
-                    {list.map((item, i) => (
+                    {posts.map((item, i) => (
                         <li key={i} className={css.item}>
-                            <Link href={item.href}>
+                            <Link href={`/information/p/${item.slug}`}>
                                 <a className={css.linkbox}>
                                     <dl className={css.content}>
-                                        <dt className={css.date}>{item.date}</dt>
+                                        <dt className={css.date}>{moment(item.publishedDate).format('YYYY.MM.DD')}</dt>
                                         <dd className={css.text}>
-                                            <p>{item.text}</p>
+                                            <p>{item.title}</p>
                                         </dd>
                                     </dl>
                                 </a>

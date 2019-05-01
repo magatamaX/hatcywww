@@ -8,13 +8,14 @@ import React from 'react'
 import fetch from 'isomorphic-unfetch'
 import mgnSmoothScroll from 'mgn-smooth-scroll';
 import { connect } from 'react-redux'
-import {
-  load, aniReset, aniKv, aniInformation, aniProfile, aniPerformance, showPageTopBtn, hidePageTopBtn
-} from '../store'
+import { load, aniReset, aniKv, aniInformation, aniProfile, aniPerformance, showPageTopBtn, hidePageTopBtn } from '../store'
+import ApolloClient from 'apollo-boost'
+import gql from 'graphql-tag'
 
 interface Props {
   list: any[],
-  posts: any,
+  posts: any[],
+  profile: any[],
   isAniKvDone: boolean,
   isAniInformationDone: boolean,
   isAniProfileDone: boolean,
@@ -44,8 +45,39 @@ class Top extends React.Component<Props, State> {
   static async getInitialProps() {
 
     // Fetch Posts
-    // const postRes = await fetch('http://localhost:3000/api/posts')
-    // const postResults = await postRes.json()
+    const client = new ApolloClient({
+      uri: 'http://localhost:4000/graphql',
+      fetchOptions: {
+        fetch: fetch as any
+      }
+    });
+    const props = await client.query({
+      query: gql`
+        query Query {
+          posts(limit:3) {
+            slug
+            title
+            publishedDate
+          }
+          profile {
+            content
+          }
+        }
+      `,
+    })
+    .then(result => {
+      return {
+        posts: result.data.posts,
+        profile: result.data.profile
+      }
+    })
+    .catch(error => {
+      return {
+        error,
+        posts: [],
+        profile: []
+      }
+    });
 
     // YouTube API
     const url = 'https://www.googleapis.com/youtube/v3/playlistItems'
@@ -61,7 +93,7 @@ class Top extends React.Component<Props, State> {
     const ytResult = await ytRes.json()
 
     return {
-      posts: [],
+      ...props,
       list: ytResult.items
     }
   }
@@ -149,10 +181,16 @@ class Top extends React.Component<Props, State> {
           <Kv isAniKvDone={this.props.isAniKvDone} />
         </section>
         <section id="information" ref={this.informationRef}>
-          <Information isAniInformationDone={this.props.isAniInformationDone} />
+          <Information
+            isAniInformationDone={this.props.isAniInformationDone}
+            posts={this.props.posts}
+          />
         </section>
         <section id="profile" ref={this.profileRef}>
-          <Profile isAniProfileDone={this.props.isAniProfileDone} />
+          <Profile
+            isAniProfileDone={this.props.isAniProfileDone}
+            profile={this.props.profile}
+          />
         </section>
         <section id="performance" ref={this.performanceRef}>
           <Performance

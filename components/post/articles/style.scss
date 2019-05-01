@@ -24,6 +24,12 @@
     line-height: 1;
 }
 
+.keyImage {
+    @include mt(60px, 30px);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
 .contents {
     @include fontSize(15px, 13px);
     @include mt(60px, 30px);
