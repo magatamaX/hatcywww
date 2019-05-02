@@ -25,7 +25,6 @@ keystone.init({
 
 	'auto update': true,
 	'mongo': process.env.MONGO_URI,
-	'session': true,
 	'auth': true,
 	'user model': 'User',
 
