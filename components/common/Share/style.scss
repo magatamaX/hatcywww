@@ -17,27 +17,15 @@
 }
 
 .facebook {
-    &:hover {
-        svg {
-            fill: $color_facebook;
-        }
-    }
+    fill: $color_facebook;
 }
 
-.instagram {
-    &:hover {
-        svg {
-            fill: $color_instagram;
-        }
-    }
+.line {
+
 }
 
 .twitter {
-    &:hover {
-        svg {
-            fill: $color_twitter;
-        }
-    }
+    fill: $color_twitter;
 }
 
 /* Generated with Bounce.js. Edit at http://bouncejs.com#%7Bs%3A%5B%7BT%3A%22c%22%2Ce%3A%22b%22%2Cd%3A1000%2CD%3A0%2Cf%3A%7Bx%3A1%2Cy%3A1%7D%2Ct%3A%7Bx%3A2%2Cy%3A1%7D%2Cs%3A1%2Cb%3A4%7D%2C%7BT%3A%22c%22%2Ce%3A%22b%22%2Cd%3A1000%2CD%3A0%2Cf%3A%7Bx%3A1%2Cy%3A1%7D%2Ct%3A%7Bx%3A1%2Cy%3A2%7D%2Cs%3A1%2Cb%3A6%7D%2C%7BT%3A%22c%22%2Ce%3A%22b%22%2Cd%3A1000%2CD%3A0%2Cf%3A%7Bx%3A1%2Cy%3A1%7D%2Ct%3A%7Bx%3A0.5%2Cy%3A0.5%7D%2Cs%3A3%2Cb%3A4%7D%5D%7D */
