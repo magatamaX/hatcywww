@@ -26,8 +26,6 @@ const Enquiry = keystone.list('Enquiry');
 
 // GraphQL用サーバ設定
 const { ApolloServer, gql } = require('apollo-server-express');
-const express = require('express');
-const graphQLServer = express();
 
 const Post = keystone.list('Post');
 const getPosts = (skip, limit) => {
@@ -133,14 +131,12 @@ const resolvers = {
 };
 
 const server = new ApolloServer({ typeDefs, resolvers });
-server.applyMiddleware({ app: graphQLServer });
 
 
 // Setup Route Bindings
 exports = module.exports = nextApp => keystoneApp => {
 
-	// GraphQL用のサーバーをPort:4000で立てる
-	graphQLServer.listen({ port: 4000 })
+	server.applyMiddleware({ app: keystoneApp });
 
 	// Next request handler
 	const handle = nextApp.getRequestHandler();

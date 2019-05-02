@@ -48,7 +48,7 @@ Information.getInitialProps = async () => {
 
     // Fetch Posts
     const client = new ApolloClient({
-      uri: 'http://localhost:4000/graphql',
+      uri: 'http://54.65.9.7/graphql',
       fetchOptions: {
         fetch: fetch as any
       }
