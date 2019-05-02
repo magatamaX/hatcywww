@@ -44,8 +44,8 @@ const Information = ({ isAniInformationDone, posts } : { isAniInformationDone: b
                 <img src="/static/images/index/information/pa.svg" alt="" />
             </div>
         </div>
-        <div className={css.bg1}></div>
-        <div className={css.bg2}></div>
+        {/* <div className={css.bg1}></div>
+        <div className={css.bg2}></div> */}
     </div>
 )
 

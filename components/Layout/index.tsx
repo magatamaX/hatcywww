@@ -1,5 +1,4 @@
 import Header from './../Header/index'
-import Footer from './../Footer/index'
 import fw from './../../styles/fw.scss'
 import React from 'react'
 
@@ -12,7 +11,6 @@ const Layout = ({ children, top = false } : { children: any, top? : boolean }) =
           {children}
         </div>
       </main>
-      <Footer />
     </div>
   </div>
 )

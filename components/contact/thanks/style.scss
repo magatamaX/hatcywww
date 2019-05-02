@@ -4,19 +4,23 @@
 @import './../../../styles/mixin';
 
 .message {
-    @include fontSize(34px);
+    @include fontSize(34px, 22px);
     font-weight: 700;
     text-align: center;
-    @include mg(80px 0);
+    @include mg(80px 0, 40px 0);
 }
 
 .note {
     @include fontSize(14px);
-    @include mb(200px);
+    @include mb(200px, 60px);
     text-align: center;
+
+    @include max(s) {
+        text-align: left;
+    }
 }
 
 .button {
     text-align: center;
-    @include mb(80px);
+    @include mb(80px, 60px);
 }

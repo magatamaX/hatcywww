@@ -22,8 +22,8 @@ const Contact = () => (
                 </div>
             </div>
         </div>
-        <div className={css.bg1}></div>
-        <div className={css.bg3}></div>
+        {/* <div className={css.bg1}></div>
+        <div className={css.bg3}></div> */}
     </div>
 )
 

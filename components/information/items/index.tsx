@@ -14,7 +14,7 @@ const Items = ({ list } : { list: {[key: string]: any}[] }) => (
                                 {item.image.public_id ? (
                                     <img src={`https://res.cloudinary.com/tokushima-hatchy-official-site/image/upload/c_lfill,h_600,q_auto,w_800/${item.image.public_id}.${item.image.format}`} alt="" />
                                 ) : (
-                                    <img src="https://unsplash.it/800/600/?image=1084" alt="" />
+                                    <img src="/static/images/information/dummy.jpg" alt={item.title} />
                                 )}
                             </figure>
                             <p className={css.text}>{item.title}</p>

@@ -3,6 +3,12 @@
 @import './../../../styles/setting/setting';
 @import './../../../styles/mixin';
 
+.inner {
+    @include max(s) {
+        padding-bottom: 10vw !important;
+    }
+}
+
 .table {
     @include width(100%, auto);
     table-layout: fixed;
@@ -137,11 +143,11 @@
     top: 50%;
     left: 50%;
     background-color: #fff;
-    @include width(400px);
+    @include width(400px, 90vw);
     z-index: 21;
     transform: translate(-50%,-50%);
     box-shadow: 2px 2px 4px rgba(#000, 0.4);
-    @include pd(40px);
+    @include pd(40px, 20px);
 
     @include flexBase( $wrap: "nowrap", $direction:  "column", $justify: "center", $align: "center" );
 
@@ -167,6 +173,14 @@
     &.exiting {
         animation: out 200ms linear;
         animation-fill-mode: forwards;
+    }
+
+    .kakuninButtons {
+        @include max(s) {
+            > div + div {
+                margin-top: 15px;
+            }
+        }
     }
 
 }

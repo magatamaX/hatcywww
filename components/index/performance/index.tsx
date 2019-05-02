@@ -73,10 +73,10 @@ const Performance = (
                 ))}
             </Slider>
         </div>
-        <div className={css.bg1}></div>
+        {/* <div className={css.bg1}></div>
         <div className={css.bg2}></div>
         <div className={css.bg3}></div>
-        <div className={css.bg4}></div>
+        <div className={css.bg4}></div> */}
     </div>
 )
 

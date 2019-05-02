@@ -106,8 +106,15 @@
     @include pr(30px);
     color: #000;
     display: block;
+    transition: all .2s ease-out;
 
     @include arrowAbs($color:$color_button_blue, $size:6, $width:1,$layout:right,$position:10,$direction:right);
+
+
+    &:hover {
+        opacity: .8;
+        transform: translateX(8px);
+    }
 }
 
 .content {

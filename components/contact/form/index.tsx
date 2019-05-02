@@ -173,7 +173,7 @@ class Form extends React.Component<Props, State> {
                     }}
                 </Transition>
                 {(!this.state.done && !this.state.error) && (
-                    <div className={fw.fInner}>
+                    <div className={`${fw.fInner} ${css.inner}`}>
                         <p className={css.lead}>下記お問い合わせフォームよりご送信ください。<span>※</span>は入力必須項目です。</p>
                         <form action="/contact/post" method="post" name="form">
                             <table className={css.table}>
