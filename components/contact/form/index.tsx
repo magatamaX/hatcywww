@@ -79,7 +79,7 @@ class Form extends React.Component<Props, State> {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         };
-        fetch("http://localhost:3000/contact/post", {
+        fetch("http://54.65.9.7/contact/post", {
             method,
             headers,
             body
