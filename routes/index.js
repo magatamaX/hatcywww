@@ -19,6 +19,9 @@
  */
 
 const keystone = require('keystone');
+
+// auth: テスト終わったら消してください。
+const auth = require('./../auth')
 const Enquiry = keystone.list('Enquiry');
 
 // GraphQL用サーバ設定
@@ -141,6 +144,11 @@ exports = module.exports = nextApp => keystoneApp => {
 
 	// Next request handler
 	const handle = nextApp.getRequestHandler();
+
+	// -- 開発終わったら消す！
+	keystoneApp.all('/', (req, res, next) => {
+		auth(req, res, next)
+	})
 
 	keystoneApp.post('/contact/post', (req, res, next) => {
 

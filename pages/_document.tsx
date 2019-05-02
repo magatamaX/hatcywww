@@ -14,6 +14,8 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          {/* noindexテスト終わったら外してください。 */}
+          <meta name="robots" content="noindex,nofollow,noarchive" />
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width" />

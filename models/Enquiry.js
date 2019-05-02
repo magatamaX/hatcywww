@@ -87,9 +87,9 @@ Enquiry.schema.methods.sendNotificationEmail = function (callback) {
 			templateName: 'enquiry-notification',
 			transport: 'mailgun',
 		}).send({
-			to: [process.env.MAILGUN_SENDTO_ADDRESS, 'magatama.club@gmail.com'],
+			to: [process.env.MAILGUN_SENDTO_ADDRESS, 'tokushimahatchyofficial@gmail.com'],
 			from: {
-				name: 'お問合せフォーム',
+				name: '徳島はっちーオフィシャルサイト自動送信',
 				email: 'noreply@mail.tokushimahatchy.com',
 			},
 			subject: '【お問合せフォーム】新しいお問合せを受信しました。',
