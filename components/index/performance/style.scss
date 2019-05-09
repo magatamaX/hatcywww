@@ -93,6 +93,11 @@
 
 .playlist {
     @include mb(80px, 10vw);
+
+    [class="slick-track"] {
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 .slideItem {

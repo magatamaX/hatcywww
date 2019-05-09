@@ -87,7 +87,7 @@ Enquiry.schema.methods.sendNotificationEmail = function (callback) {
 			templateName: 'enquiry-notification',
 			transport: 'mailgun',
 		}).send({
-			to: [process.env.MAILGUN_SENDTO_ADDRESS, 'tokushimahatchyofficial@gmail.com'],
+			to: [process.env.MAILGUN_SENDTO_ADDRESS, 'tokushimahatchy8@gmail.com', 'tokushimahatchyofficial@gmail.com'],
 			from: {
 				name: '徳島はっちーオフィシャルサイト自動送信',
 				email: 'noreply@mail.tokushimahatchy.com',

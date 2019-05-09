@@ -52,12 +52,12 @@ class Top extends React.Component<Props, State> {
 
     // YouTube API
     const url = 'https://www.googleapis.com/youtube/v3/playlistItems'
-    const playlistId = 'PL8Mym-l4uq978vdSETUg4B4VLKoVU2pW-'
+    const playlistId = 'UUCmRnjk4fhP7zapyIDjEOpQ'
     const params: any = new URLSearchParams()
     params.set('part', 'snippet')
     params.set('playlistId', playlistId)
     params.set('maxResults', 20)
-    params.set('key', 'AIzaSyAmg-DMiJAYOHX08aDQyy7dylhXvnmXmPo')
+    params.set('key', 'AIzaSyCYUVVRWHwzEcUi04qOSG2POZP_GZ-SF9M')
 
     const ytRes = await fetch(url + '?' + params.toString())
     const ytResult = await ytRes.json()

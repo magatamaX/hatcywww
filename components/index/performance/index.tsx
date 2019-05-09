@@ -43,7 +43,7 @@ const Performance = (
             <Slider
                 className="center"
                 centerMode={true}
-                infinite={true}
+                infinite={false}
                 slidesToShow={5}
                 swipeToSlide={true}
                 speed={500}

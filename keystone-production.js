@@ -4,8 +4,7 @@ require('dotenv').config();
 
 // Require next.js
 const next = require('next');
-const dev = false;
-const app = next({ dev });
+const app = next({ dev: false });
 
 // Require keystone
 const keystone = require('keystone');
