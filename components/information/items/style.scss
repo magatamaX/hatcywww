@@ -5,6 +5,12 @@
 
 .list {
     @include pb(60px, 30px);
+
+    min-height: 800px;
+
+    @include max(s) {
+        min-height: 0;
+    }
 }
 
 .item {

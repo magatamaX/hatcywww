@@ -51,10 +51,9 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "start:dev": "node keystone.js",
-    "start:production": "NODE_ENV=production node keystone.js",
+    "start:dev": "node dev.js",
+    "start:production": "node prod.js",
     "production": "npm run build && npm run start:production",
-    "build": "next build",
-    "production:windows": "cross-env NODE_ENV=production node keystone.js"
+    "build": "next build"
   }
 }

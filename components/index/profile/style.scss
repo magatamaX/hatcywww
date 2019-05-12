@@ -4,20 +4,20 @@
 @import './../../../styles/mixin';
 
 .profile {
-    @include pt(90px, 10vw);
+    @include pt(60px, 10vw);
     border-top: 2px dashed rgba(#000, 0.1);
     position: relative;
 }
 
 .inner {
     position: relative;
-    @include height(530px, auto);
+    @include height(570px, auto);
 }
 
 .title {
     position: absolute;
     @include left(0, auto);
-    @include top(20px, auto);
+    @include top(45px, auto);
 
     @include width(232px, 40vw);
 
@@ -47,7 +47,7 @@
     color: #fff;
     border-radius: 10px;
 
-    @include pd(50px 30px 30px, 5vw);
+    @include pd(40px 30px 30px, 5vw);
 
     box-shadow: 10px 10px 0 #ccc;
 
@@ -68,7 +68,7 @@
 
 .namebox {
     @include pd(0 35px, 0);
-    @include mb(30px, 10px);
+    @include mb(20px, 10px);
 
     @include max(s) {
         text-align: center;
@@ -102,17 +102,26 @@
 }
 
 .intro {
-    @include fontSize(15px, 13px);
+    @include fontSize(14px, 13px);
     line-height: 27px;
+    line-height: 1.8;
+
+    p {
+        display: inline;
+    }
 
     @include max(s) {
         line-height: 1.6;
+
+        p {
+            display: block;
+        }
     }
 }
 
 .buttonArea {
     text-align: right;
-    @include mt(30px, 20px);
+    @include mt(20px, 20px);
 }
 
 .hatchy {

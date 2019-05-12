@@ -78,6 +78,18 @@ const getHistory = () => {
 		})
 }
 
+const Api = keystone.list('Api');
+const getApi = () => {
+	return Promise.resolve().then(() => {
+		return Api.model
+			.find()
+			.exec((err, results) => {
+				if (err) throw err
+				return results
+			})
+		})
+}
+
 const typeDefs = gql`
 scalar Date
 type Image {
@@ -111,11 +123,17 @@ type History {
 	year: String
 	content: String
 }
+type Api {
+	name: String
+	key: String
+	playlistId: String
+}
 type Query {
 	posts(limit: Int, skip: Int): [Post]
 	currentPost(slug: String!): Post 
 	profile: [Profile]
 	history: [History]
+	api: [Api]
 }
 `;
 
@@ -124,7 +142,8 @@ const resolvers = {
 		posts: (_, { skip, limit }) => getPosts(skip, limit),
 		currentPost: ( _, { slug }) => getCurrentPost(slug),
 		profile: () => getProfile(),
-		history: () => getHistory()
+		history: () => getHistory(),
+		api: () => getApi()
 	},
 };
 

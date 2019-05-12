@@ -43,8 +43,8 @@ const Performance = (
             <Slider
                 className="center"
                 centerMode={true}
-                infinite={false}
-                slidesToShow={5}
+                infinite={true}
+                slidesToShow={2}
                 swipeToSlide={true}
                 speed={500}
                 dots={false}
@@ -56,7 +56,7 @@ const Performance = (
                     {
                         breakpoint: 768,
                         settings: {
-                            slidesToShow: 3,
+                            slidesToShow: 2,
                         }
                     }
                 ]}

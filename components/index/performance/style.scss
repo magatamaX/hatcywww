@@ -93,6 +93,9 @@
 
 .playlist {
     @include mb(80px, 10vw);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 
     [class="slick-track"] {
         margin-left: auto;

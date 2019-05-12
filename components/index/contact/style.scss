@@ -33,7 +33,7 @@
     background-color: $color_button_blue;
     color: #fff;
     @include mt(40px, 8vw);
-    @include pd(60px 0 50px, 10vw 0 20vw);
+    @include pd(60px 0 50px, 10vw 0 30vw);
     text-align: center;
     @include fontSize(15px, 13px);
     line-height: 26px;

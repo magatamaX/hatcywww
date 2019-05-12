@@ -18,7 +18,7 @@ const Sns = ({ margin } : { margin?: number }) => {
                 <a href="https://www.instagram.com/tokushimahatchy/" target="_blank" className={`${css.link} ${css.instagram}`}><Instagram /></a>
             </li>
             <li className={fw.fFlex4}>
-                <a href="https://www.youtube.com/channel/UCcuvMDh-vzquDIX4YgWRKkA" target="_blank" className={`${css.link} ${css.youtube}`}><Youtube /></a>
+                <a href="https://www.youtube.com/channel/UCCmRnjk4fhP7zapyIDjEOpQ" target="_blank" className={`${css.link} ${css.youtube}`}><Youtube /></a>
             </li>
         </ul>
     )

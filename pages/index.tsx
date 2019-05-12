@@ -50,22 +50,9 @@ class Top extends React.Component<Props, State> {
 
   static async getInitialProps() {
 
-    // YouTube API
-    const url = 'https://www.googleapis.com/youtube/v3/playlistItems'
-    const playlistId = 'UUCmRnjk4fhP7zapyIDjEOpQ'
-    const params: any = new URLSearchParams()
-    params.set('part', 'snippet')
-    params.set('playlistId', playlistId)
-    params.set('maxResults', 20)
-    params.set('key', 'AIzaSyCYUVVRWHwzEcUi04qOSG2POZP_GZ-SF9M')
-
-    const ytRes = await fetch(url + '?' + params.toString())
-    const ytResult = await ytRes.json()
-
-
-    // Fetch Posts
+    // Fetch Posts, Profiles and YT API Key
     const client = new ApolloClient({
-      uri: 'http://54.65.9.7/graphql',
+      uri: 'http://localhost:3000/graphql',
       fetchOptions: {
         fetch: fetch as any
       }
@@ -81,25 +68,45 @@ class Top extends React.Component<Props, State> {
           profile {
             content
           }
+          api {
+            name
+            key
+            playlistId
+          }
         }
       `,
     })
     .then(result => {
       return {
         posts: result.data.posts,
-        profile: result.data.profile
+        profile: result.data.profile,
+        api: result.data.api
       }
     })
     .catch(error => {
       return {
         error,
         posts: [],
-        profile: []
+        profile: [],
+        api: []
       }
     });
 
+    
+    // YouTube API
+    const url = 'https://www.googleapis.com/youtube/v3/playlistItems'
+    const params: any = new URLSearchParams()
+    await params.set('part', 'snippet')
+    await params.set('maxResults', 20)
+    await params.set('key', props.api.filter((api: any) => api.name === "youtube")[0].key)
+    await params.set('playlistId', props.api.filter((api: any) => api.name === "youtube")[0].playlistId)
+
+    const ytRes = await fetch(url + '?' + params.toString())
+    const ytResult = await ytRes.json()
+
     return {
-      ...props,
+      posts: props.posts,
+      profile: props.profile,
       list: ytResult.items
     }
   }
@@ -182,7 +189,7 @@ class Top extends React.Component<Props, State> {
 
   render() {
 
-    const description: string = 'パフォーミングアーティスト・徳島はっちーオフィシャルサイト。1999年よりジャグリング、2008年より身体表現の向上を求めパントマイムとクラウンを学ぶ。アートマイムをJIDAI氏、日本舞踊を藤間玉左保氏に師事。2006年デビュー 徳島県内各地の小学校、高齢者施設などを訪問し活動開始。2017年より小児病棟でのパフォーマンス活動を本格的に開始。'
+    const description: string = 'パフォーミングアーティスト・徳島はっちーオフィシャルサイト。活動予定やプロフィールは本ページをチェック！ 2006年デビュー。以降、地元徳島県内各地の小学校、高齢者施設訪問、イベント出演など活動開始。その後、活動拠点を京都・東京と移し、2017年よりイベント出演と並行して小児病棟でのパフォーマンス活動も本格的に開始。各種イベント出演依頼や、ご質問、ご相談なども承っております。'
 
     return (
       <Layout top={true}>

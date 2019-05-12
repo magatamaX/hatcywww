@@ -16,8 +16,8 @@
 .text {
     position: absolute;
     @include width(600px, auto);
-    @include height(300px, auto);
-    @include pd(0 40px, 0 15px 8vw);
+    @include height(auto, auto);
+    @include pd(40px, 0 15px 8vw);
     @include top(10%, auto);
     @include left(0, auto);
     background-color: rgba(#fff, 0.8);

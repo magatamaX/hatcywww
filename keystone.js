@@ -1,80 +1,83 @@
-// Simulate config options from your production environment by
-// customising the .env file in your project's root folder.
-require('dotenv').config();
+module.exports = ({ dev }) => {
 
-// Require next.js
-const next = require('next');
-const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dev });
+	// Simulate config options from your production environment by
+	// customising the .env file in your project's root folder.
+	require('dotenv').config();
 
-// Require keystone
-const keystone = require('keystone');
+	// Require next.js
+	const next = require('next');
+	const app = next({ dev: dev });
 
-// Initialise Keystone with your project's configuration.
-// See http://keystonejs.com/guide/config for available options
-// and documentation.
+	// Require keystone
+	const keystone = require('keystone');
 
-keystone.init({
-	'name': 'TokushimaHatchyOfficialSite',
-	'brand': '徳島はっちーオフィシャルサイト',
+	// Initialise Keystone with your project's configuration.
+	// See http://keystonejs.com/guide/config for available options
+	// and documentation.
 
-	'views': 'templates/views',
-	'view engine': 'pug',
+	keystone.init({
+		'name': 'TokushimaHatchyOfficialSite',
+		'brand': '徳島はっちーオフィシャルサイト',
 
-	'emails': 'templates/emails',
+		'views': 'templates/views',
+		'view engine': 'pug',
 
-	'auto update': true,
-	'mongo': process.env.MONGO_URI,
-	'auth': true,
-	'user model': 'User',
+		'emails': 'templates/emails',
 
-	'wysiwyg menubar': true,
-	'wysiwyg cloudinary images': true,
+		'auto update': true,
+		'mongo': process.env.MONGO_URI,
+		'auth': true,
+		'user model': 'User',
 
-  	'trust proxy' : true,
-});
+		'wysiwyg menubar': true,
+		'wysiwyg cloudinary images': true,
 
-// Load your project's Models
-keystone.import('models');
+		'trust proxy' : true,
+	});
 
-app
-	.prepare()
-	.then(() => {
+	// Load your project's Models
+	keystone.import('models');
 
-		// Setup common locals for your templates. The following are required for the
-		// bundled templates and layouts. Any runtime locals (that should be set uniquely
-		// for each request) should be added to ./routes/middleware.js
-		keystone.set('locals', {
-			_: require('lodash'),
-			env: keystone.get('env'),
-			utils: keystone.utils,
-			editable: keystone.content.editable,
-		});
+	app
+		.prepare()
+		.then(() => {
 
-		// Load your project's Routes
-		keystone.set('routes', require('./routes')(app));
+			// Setup common locals for your templates. The following are required for the
+			// bundled templates and layouts. Any runtime locals (that should be set uniquely
+			// for each request) should be added to ./routes/middleware.js
+			keystone.set('locals', {
+				_: require('lodash'),
+				env: keystone.get('env'),
+				utils: keystone.utils,
+				editable: keystone.content.editable,
+			});
 
-
-		// Configure the navigation bar in Keystone's Admin UI
-		keystone.set('nav', {
-			'投稿': ['posts', 'profiles', 'histories'],
-			'お問合せ': 'enquiries',
-			'ユーザー': 'users',
-		});
-
-		// Start Keystone to connect to your database and initialise the web server
-
-		if (!process.env.MAILGUN_API_KEY || !process.env.MAILGUN_DOMAIN) {
-			console.log('----------------------------------------'
-			+ '\nWARNING: MISSING MAILGUN CREDENTIALS'
-			+ '\n----------------------------------------'
-			+ '\nYou have opted into email sending but have not provided'
-			+ '\nmailgun credentials. Attempts to send will fail.'
-			+ '\n\nCreate a mailgun account and add the credentials to the .env file to'
-			+ '\nset up your mailgun integration');
-		}
+			// Load your project's Routes
+			keystone.set('routes', require('./routes')(app));
 
 
-		keystone.start();
-	})
+			// Configure the navigation bar in Keystone's Admin UI
+			keystone.set('nav', {
+				'投稿': ['posts', 'profiles', 'histories'],
+				'お問合せ': 'enquiries',
+				'ユーザー': 'users',
+				'API': 'apis'
+			});
 
+			// Start Keystone to connect to your database and initialise the web server
+
+			if (!process.env.MAILGUN_API_KEY || !process.env.MAILGUN_DOMAIN) {
+				console.log('----------------------------------------'
+				+ '\nWARNING: MISSING MAILGUN CREDENTIALS'
+				+ '\n----------------------------------------'
+				+ '\nYou have opted into email sending but have not provided'
+				+ '\nmailgun credentials. Attempts to send will fail.'
+				+ '\n\nCreate a mailgun account and add the credentials to the .env file to'
+				+ '\nset up your mailgun integration');
+			}
+
+
+			keystone.start();
+		})
+
+}
