@@ -52,7 +52,7 @@ class Top extends React.Component<Props, State> {
 
     // Fetch Posts, Profiles and YT API Key
     const client = new ApolloClient({
-      uri: 'http://localhost:3000/graphql',
+      uri: 'https://tokushimahatchy.com/graphql',
       fetchOptions: {
         fetch: fetch as any
       }
