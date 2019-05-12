@@ -39,9 +39,12 @@ class Top extends React.Component<Props, State> {
     this.state = {
       currentVideo: props.list[0].snippet.resourceId.videoId || ''
     }
+
+    this.kvTitleOn = this.kvTitleOn.bind(this)
   }
 
-  private smoothScroll = '';
+  private smoothScroll: any = '';
+  private kvVideo: any = null;
   private kvRef = React.createRef<HTMLDivElement>();
   private informationRef = React.createRef<HTMLDivElement>();
   private profileRef = React.createRef<HTMLDivElement>();
@@ -124,9 +127,8 @@ class Top extends React.Component<Props, State> {
   ani(): void {
 
     const targets: any[] = [
-      [this.kvRef, [0.5], this.props.aniKv],
       [this.informationRef, [0.7], this.props.aniInformation],
-      [this.profileRef, [0.7], this.props.aniProfile],
+      [this.profileRef, [0.5], this.props.aniProfile],
       [this.performanceRef, [0.3], this.props.aniPerformance],
     ]
 
@@ -162,10 +164,21 @@ class Top extends React.Component<Props, State> {
     })
   }
 
+  kvTitleOn() {
+    if ( !this.props.isAniKvDone ) {
+      this.props.aniKv()
+    }
+  }
+
   componentDidMount() {
 
     this.props.aniReset()
     this.ani()
+
+    this.kvVideo = document.getElementById('kvVideo')
+    if ( this.kvVideo ) {
+      this.kvVideo.addEventListener('canplay', this.kvTitleOn, false)
+    }
 
     this.smoothScroll = new mgnSmoothScroll(
       ".j-smooth-scroll",
@@ -184,6 +197,11 @@ class Top extends React.Component<Props, State> {
   componentWillUnmount() {
 
     this.smoothScroll = ''
+
+    if ( this.kvVideo ) {
+      this.kvVideo.removeEventListener('canplay', this.kvTitleOn, false)
+    }
+    this.kvVideo = null
 
   }
 
