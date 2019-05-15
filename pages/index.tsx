@@ -1,3 +1,4 @@
+import 'url-search-params-polyfill'
 import Layout from '../components/Layout/index'
 import Kv from '../components/index/Kv/index'
 import Information from '../components/index/information/index'

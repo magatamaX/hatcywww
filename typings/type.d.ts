@@ -22,3 +22,8 @@ declare module '*lib/validator' {
   const content: any;
   export default content; 
 }
+
+declare module 'url-search-params-polyfill' {
+  const content: any;
+  export default content; 
+}
