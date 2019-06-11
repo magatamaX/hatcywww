@@ -27,3 +27,15 @@ declare module 'url-search-params-polyfill' {
   const content: any;
   export default content; 
 }
+
+declare module 'react-photo-gallery' {
+  const content: any;
+  export default content;
+}
+
+declare module 'react-images' {
+  const content: any;
+  export const Modal: (onClose: any, styles: any) => any;
+  export const ModalGateway: (children: any) => any;
+  export default content;
+}
