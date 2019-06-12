@@ -8,7 +8,7 @@ const Items = ({ list } : { list: {[key: string]: any}[] }) => (
         <ul className={`${fw.fFlex} ${fw.fFlex_mg20} ${fw.fFlex_mg0_s} ${css.list}`}>
             {list.map(( item, i ) => (
                 <li key={i} className={`${fw.fFlex4} ${fw.fFlex12_s} ${css.item}`}>
-                    <Link href={`/information/p/${item.slug}`}>
+                    <Link as={`/information/p/${item.slug}`} href={`/post?slug=${item.slug}`}>
                         <a className={css.box}>
                             <figure className={css.image}>
                                 {item.image.public_id ? (

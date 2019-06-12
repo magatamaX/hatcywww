@@ -14,7 +14,7 @@ const Information = ({ isAniInformationDone, posts } : { isAniInformationDone: b
                 <ul className={css.list}>
                     {posts.map((item, i) => (
                         <li key={i} className={css.item}>
-                            <Link href={`/information/p/${item.slug}`}>
+                            <Link as={`/information/p/${item.slug}`} href={`/post?slug=${item.slug}`}>
                                 <a className={css.linkbox}>
                                     <dl className={css.content}>
                                         <dt className={css.date}>{moment(item.publishedDate).format('YYYY.MM.DD')}</dt>

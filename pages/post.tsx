@@ -53,7 +53,9 @@ const Post = ({ currentPost } : { currentPost: any }) => {
   )
 }
 
-Post.getInitialProps = async ({ req }:{ req: any }) => {
+Post.getInitialProps = async ( context: any ) => {
+
+  const { slug } = context.query;
 
   // Fetch Current Post
   const client = new ApolloClient({
@@ -65,7 +67,7 @@ Post.getInitialProps = async ({ req }:{ req: any }) => {
   const props = await client.query({
     query: gql`
       query Query {
-        currentPost(slug:"${req.params.slug}") {
+        currentPost(slug:"${slug}") {
           _id
           slug
           title
