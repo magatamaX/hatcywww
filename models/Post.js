@@ -18,47 +18,47 @@ Post.add({
 	title: {
 		type: String,
 		required: true,
-		label: 'タイトル'
+		label: 'タイトル',
 	},
 	state: {
 		type: Types.Select,
 		options: 'draft, published, archived',
 		default: 'published',
 		index: true,
-		label: '状態'
+		label: '状態',
 	},
 	author: {
 		type: Types.Relationship,
 		ref: 'User',
 		index: true,
-		label: '投稿者'
+		label: '投稿者',
 	},
 	publishedDate: {
 		type: Types.Date,
 		index: true,
 		label: '公開日',
 		dependsOn: {
-			state: 'published'
-		}
+			state: 'published',
+		},
 	},
 	image: {
 		type: Types.CloudinaryImage,
-		label: '画像'
+		label: '画像',
 	},
 	keywords: {
 		type: Types.TextArray,
-		label: 'キーワード'
+		label: 'キーワード',
 	},
 	brief: {
 		type: Types.Textarea,
 		height: 100,
-		label: '概要'	
+		label: '概要',
 	},
 	content: {
 		type: Types.Html,
 		wysiwyg: true,
 		height: 400,
-		label: '本文'
+		label: '本文',
 	},
 });
 

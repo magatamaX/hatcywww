@@ -35,23 +35,23 @@ const getPosts = (skip, limit) => {
 			.skip(skip)
 			.limit(limit)
 			.exec((err, results) => {
-				if (err) throw err
-				return results
-			})
-		})
-}
+				if (err) throw err;
+				return results;
+			});
+	});
+};
 const getCurrentPost = (slug) => {
 	return Promise.resolve().then(() => {
 		return Post.model
 			.findOne({
-				slug: slug
+				slug: slug,
 			})
 			.exec((err, result) => {
-				if (err) throw err
-				return result
-			})
-		})
-}
+				if (err) throw err;
+				return result;
+			});
+	});
+};
 
 const Profile = keystone.list('Profile');
 const getProfile = () => {
@@ -59,11 +59,11 @@ const getProfile = () => {
 		return Profile.model
 			.find()
 			.exec((err, results) => {
-				if (err) throw err
-				return results
-			})
-		})
-}
+				if (err) throw err;
+				return results;
+			});
+	});
+};
 
 const History = keystone.list('History');
 const getHistory = () => {
@@ -72,11 +72,11 @@ const getHistory = () => {
 			.find()
 			.sort('-year')
 			.exec((err, results) => {
-				if (err) throw err
-				return results
-			})
-		})
-}
+				if (err) throw err;
+				return results;
+			});
+	});
+};
 
 const Api = keystone.list('Api');
 const getApi = () => {
@@ -84,11 +84,11 @@ const getApi = () => {
 		return Api.model
 			.find()
 			.exec((err, results) => {
-				if (err) throw err
-				return results
-			})
-		})
-}
+				if (err) throw err;
+				return results;
+			});
+	});
+};
 
 const Gallery = keystone.list('Gallery');
 const getGallery = (skip, limit) => {
@@ -99,11 +99,11 @@ const getGallery = (skip, limit) => {
 			.skip(skip)
 			.limit(limit)
 			.exec((err, results) => {
-				if (err) throw err
-				return results
-			})
-		})
-}
+				if (err) throw err;
+				return results;
+			});
+	});
+};
 
 const typeDefs = gql`
 scalar Date
@@ -165,11 +165,11 @@ type Query {
 const resolvers = {
 	Query: {
 		posts: (_, { skip, limit }) => getPosts(skip, limit),
-		currentPost: ( _, { slug }) => getCurrentPost(slug),
+		currentPost: (_, { slug }) => getCurrentPost(slug),
 		profile: () => getProfile(),
 		history: () => getHistory(),
 		api: () => getApi(),
-		gallery: (_, { skip, limit }) => getGallery(skip, limit)
+		gallery: (_, { skip, limit }) => getGallery(skip, limit),
 	},
 };
 
@@ -194,17 +194,17 @@ exports = module.exports = nextApp => keystoneApp => {
 			fields: 'name, company, email, phone, enquiryType, message',
 			errorMessage: 'There was a problem submitting your enquiry:',
 		}, function (err) {
-			if (err) console.log(err)
-			const actualPage = '/contact'
-			nextApp.render(req, res, actualPage)
+			if (err) console.log(err);
+			const actualPage = '/contact';
+			nextApp.render(req, res, actualPage);
 		});
-	})
+	});
 
 	keystoneApp.get('/information/p/:slug', (req, res) => {
-		const actualPage = '/post'
-		const queryParams = { slug: req.params.slug }
-		nextApp.render(req, res, actualPage, queryParams)
-	})
+		const actualPage = '/post';
+		const queryParams = { slug: req.params.slug };
+		nextApp.render(req, res, actualPage, queryParams);
+	});
 
 	keystoneApp.get('*', (req, res) => {
 		return handle(req, res);

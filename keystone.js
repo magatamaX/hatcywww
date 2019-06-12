@@ -32,7 +32,7 @@ module.exports = ({ dev }) => {
 		'wysiwyg menubar': true,
 		'wysiwyg cloudinary images': true,
 
-		'trust proxy' : true,
+		'trust proxy': true,
 	});
 
 	// Load your project's Models
@@ -58,11 +58,11 @@ module.exports = ({ dev }) => {
 
 			// Configure the navigation bar in Keystone's Admin UI
 			keystone.set('nav', {
-				'投稿': ['posts', 'profiles', 'histories'],
-				'ギャラリー': ['galleries'],
-				'お問合せ': 'enquiries',
-				'ユーザー': 'users',
-				'API': 'apis'
+				投稿: ['posts', 'profiles', 'histories'],
+				ギャラリー: ['galleries'],
+				お問合せ: 'enquiries',
+				ユーザー: 'users',
+				API: 'apis',
 			});
 
 			// Start Keystone to connect to your database and initialise the web server
@@ -79,6 +79,7 @@ module.exports = ({ dev }) => {
 
 
 			keystone.start();
-		})
+		});
 
 }
+;
