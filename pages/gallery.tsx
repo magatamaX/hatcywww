@@ -44,14 +44,14 @@ const PhotoGallery = ({ error, photos } : { error: any, photos: any[] }) => {
       </Head>
       <section>
         <Titlebox text="ギャラリー" engText="Gallery" />
-        { error ? (
-          <p>投稿を取得できませんでした。しばらくたってから再度お試しください。</p>
+        { photos.length === 0 ? (
+          <p>{ error ? '投稿を取得できませんでした。しばらくたってから再度お試しください。' : 'まだ投稿がありません。'}</p>
         ) : (
           <React.Fragment>
             <style>{`
               #photo-gallery {
                 min-height: 800px;
-                margin-bottom: 60px;
+                margin-bottom: 120px;
               }
               #photo-gallery .gallery-photo {
                 position: relative;
