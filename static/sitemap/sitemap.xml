@@ -11,23 +11,15 @@
   <priority>0.8</priority>
 </url>
 <url>
-  <loc>https://tokushimahatchy.com/information/p/for-you-7-27-28</loc>
-  <priority>0.8</priority>
-</url>
-<url>
-  <loc>https://tokushimahatchy.com/information/p/2019-5-18-19</loc>
-  <priority>0.8</priority>
-</url>
-<url>
-  <loc>https://tokushimahatchy.com/information/p/vol-4-2019</loc>
-  <priority>0.8</priority>
-</url>
-<url>
   <loc>https://tokushimahatchy.com/information</loc>
   <priority>0.8</priority>
 </url>
 <url>
   <loc>https://tokushimahatchy.com/profile</loc>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://tokushimahatchy.com/gallery</loc>
   <priority>0.8</priority>
 </url>
 
