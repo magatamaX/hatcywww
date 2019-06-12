@@ -242,9 +242,7 @@ PhotoGallery.getInitialProps = async () => {
 
   // Fetch Profile and Histories
   const client = new ApolloClient({
-    // uri: 'https://tokushimahatchy.com/graphql',
-    uri: 'http://localhost:3000/graphql',
-    // uri: 'http://54.65.9.7/graphql',
+    uri: 'https://tokushimahatchy.com/graphql',
     fetchOptions: {
       fetch: fetch as any
     }
