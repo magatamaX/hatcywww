@@ -80,7 +80,7 @@
 }
 
 .list {
-    @include width(520px, auto);
+    @include width(650px, auto);
     position: absolute;
     @include top(50%, auto);
     @include left(50%, auto);
@@ -130,23 +130,25 @@
         transition: background-size .3s ease-out;
     }
 
-    &:hover {
+    &:hover,
+    &.current {
 
         &::before {
             background-size: 100% 5px;
         }
     }
+
 }
 
 .sns {
     @include width(120px, 40vw);
     position: absolute;
     @include top(50%, auto);
-    @include right(140px, auto);
+    @include right(110px, auto);
     transform: translate(-50%,-50%);
     text-align: center;
 
-    @media screen and (max-width: 1200px) {
+    @media screen and (max-width: 1280px) {
         display: none;
     }
 
