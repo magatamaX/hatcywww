@@ -19,8 +19,8 @@ const Post = ({ currentPost } : { currentPost: any }) => {
     : 'パフォーミングアーティスト・徳島はっちーオフィシャルサイト。活動予定やプロフィールは本ページをチェック！ 2006年デビュー。以降、地元徳島県内各地の小学校、高齢者施設訪問、イベント出演など活動開始。その後、活動拠点を京都・東京と移し、2017年よりイベント出演と並行して小児病棟でのパフォーマンス活動も本格的に開始。各種イベント出演依頼や、ご質問、ご相談なども承っております。'
 
   const keywords: string = currentPost.keywords.length > 0
-    ? `${currentPost.keywords.reduce((a: string, c: string) => a + c + ',', '')}パントマイム,ジャグリング,クラウン,アートマイム,大道芸,ピエロ,ダンス,パフォーマンス,徳島,徳島はっちー`
-    : `パントマイム,ジャグリング,クラウン,アートマイム,大道芸,ピエロ,ダンス,パフォーマンス,徳島,徳島はっちー`
+    ? `徳島はっちー,${currentPost.keywords.reduce((a: string, c: string) => a + c + ',', '')}パントマイム,ジャグリング,クラウン,アートマイム,大道芸,ピエロ,ダンス,パフォーマンス,徳島`
+    : `徳島はっちー,パントマイム,ジャグリング,クラウン,アートマイム,大道芸,ピエロ,ダンス,パフォーマンス,徳島`
 
   const ogUrl: string = currentPost.slug
     ? `https://tokushimahatchy.com/information/p/${currentPost.slug}`

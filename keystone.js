@@ -59,6 +59,7 @@ module.exports = ({ dev }) => {
 			// Configure the navigation bar in Keystone's Admin UI
 			keystone.set('nav', {
 				'投稿': ['posts', 'profiles', 'histories'],
+				'ギャラリー': ['galleries'],
 				'お問合せ': 'enquiries',
 				'ユーザー': 'users',
 				'API': 'apis'

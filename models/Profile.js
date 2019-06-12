@@ -10,6 +10,7 @@ var Profile = new keystone.List('Profile', {
 	map: { name: 'title' },
 	label: 'プロフィール',
 	plural: 'プロフィール',
+	nodelete: true,
 });
 
 Profile.add({

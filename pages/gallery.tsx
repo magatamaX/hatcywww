@@ -1,12 +1,11 @@
 import Layout from '../components/Layout/index'
 import Titlebox from '../components/common/Titlebox/index'
 
-// import ApolloClient from 'apollo-boost'
-// import gql from 'graphql-tag'
-// import React from 'react'
-// import fetch from 'isomorphic-unfetch'
+import ApolloClient from 'apollo-boost'
+import gql from 'graphql-tag'
+import fetch from 'isomorphic-unfetch'
 import Head from 'next/head'
-
+import moment from 'moment'
 import React, { useState } from "react";
 import Gallery from "react-photo-gallery";
 import Carousel, { Modal, ModalGateway } from "react-images";
@@ -33,7 +32,7 @@ const PhotoGallery = ({ error, photos } : { error: any, photos: any[] }) => {
       <Head>
         <title>ギャラリー｜パフォーミングアーティスト 徳島はっちー</title>
         <meta name="description" content={description} />
-        <meta name="keywords" content="パントマイム,ジャグリング,クラウン,アートマイム,大道芸,ピエロ,ダンス,パフォーマンス,徳島,徳島はっちー" />
+        <meta name="keywords" content="徳島はっちー,パントマイム,ジャグリング,クラウン,アートマイム,大道芸,ピエロ,ダンス,パフォーマンス,徳島" />
         <meta property="og:locale" content="ja_JP" />
         <meta property="og:title" content="プロフィール｜パフォーミングアーティスト 徳島はっちー" />
         <meta property="og:type" content="website" />
@@ -86,6 +85,33 @@ const PhotoGallery = ({ error, photos } : { error: any, photos: any[] }) => {
                 -o-transform: translateY(0%);
                 transform: translateY(0%);
               }
+              .gallery-photo-footer {
+                position: absolute;
+                padding: 30px 20px 20px;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                z-index: 1;
+                text-shadow: 1px 1px 3px #000;
+              }
+              .gallery-photo-footer__caption {
+                color: #fff;
+                font-size: 16px;
+                font-weight: bold;
+              }
+              .gallery-photo-footer__date {
+                color: #fff;
+                font-size: 12px;
+                margin-top: 10px;
+              }
+              .gallery-photo-footer__place {
+                color: #fff;
+                font-size: 12px;
+                margin-top: 10px;
+              }
+              .gallery-photo-footer__place a {
+                color: #fff;
+              }
               @media screen and (max-width: 768px) {
                 #photo-gallery {
                   min-height: 100vh;
@@ -99,6 +125,17 @@ const PhotoGallery = ({ error, photos } : { error: any, photos: any[] }) => {
                   -ms-transform: translateY(0%);
                   -o-transform: translateY(0%);
                   transform: translateY(0%);
+                }
+                .gallery-photo-footer__caption {
+                  font-size: 14px;
+                }
+                .gallery-photo-footer__date {
+                  font-size: 10px;
+                  margin-top: 5px;
+                }
+                .gallery-photo-footer__place {
+                  font-size: 10px;
+                  margin-top: 5px;
                 }
               }
             `}</style>
@@ -164,16 +201,24 @@ const PhotoGallery = ({ error, photos } : { error: any, photos: any[] }) => {
                                 srcset: x.srcSet,
                                 caption: x.title
                             }))}
-                            styles={{
-                              footer: (base: any) => ({
-                                ...base,
-                                opacity: 1,
-                                transform: 'none'
-                              }),
-                              footerCount: (base: any) => ({
-                                ...base,
-                                display: 'none'
-                              })
+                            components={{
+                              Footer: ({ currentView, isModal } : { currentView: any, isModal: boolean }) => isModal ? (
+                                <div className="gallery-photo-footer">
+                                  <p className="gallery-photo-footer__caption">{currentView.title}</p>
+                                  {currentView.date && (
+                                    <p className="gallery-photo-footer__date">{moment(currentView.date).format('YYYY年M月D日')}</p>
+                                  )}
+                                  {currentView.place && (
+                                    <React.Fragment>
+                                      {currentView.placeurl ? (
+                                        <p className="gallery-photo-footer__place"><a href={currentView.placeurl} target="_blank">{currentView.place}</a></p>
+                                      ) : (
+                                        <p className="gallery-photo-footer__place">{currentView.place}</p>
+                                      )}
+                                    </React.Fragment>
+                                  )}
+                                </div>
+                              ) : null
                             }}
                         />
                     </Modal>
@@ -190,104 +235,64 @@ const PhotoGallery = ({ error, photos } : { error: any, photos: any[] }) => {
 PhotoGallery.getInitialProps = async () => {
 
   // Fetch Profile and Histories
-//   const client = new ApolloClient({
-//     uri: 'https://tokushimahatchy.com/graphql',
-//     fetchOptions: {
-//       fetch: fetch as any
-//     }
-//   });
-//   const props = await client.query({
-//     query: gql`
-//       query Query {
-//         profile {
-//           content
-//         }
-//         history {
-//           year
-//           content
-//         }
-//       }
-//     `,
-//   })
-//   .then(result => {
-//     return {
-//       profile: result.data.profile,
-//       history: result.data.history
-//     }
-//   })
-//   .catch(error => {
-//     return {
-//       error,
-//       profile: [],
-//       history: []
-//     }
-//   });
-
-//   return {
-//     ...props
-//   }
-const photos = await [
-    {
-      src: "https://source.unsplash.com/2ShvY8Lf6l0/800x599",
-      title: "これはタイトルですよ。",
-      width: 4,
-      height: 3
-    },
-    {
-      src: "https://source.unsplash.com/Dm-qxdynoEc/800x799",
-      title: "長いタイトル長いタイトル長いタイトル長いタイトル長いタイトル長いタイトル",
-      width: 1,
-      height: 1
-    },
-    {
-      src: "https://source.unsplash.com/qDkso9nvCg0/600x799",
-      title: "短いタイトル",
-      width: 3,
-      height: 4
-    },
-    {
-      src: "https://source.unsplash.com/iecJiKe_RNg/600x799",
-      title: "あほみたいな",
-      width: 3,
-      height: 4
-    },
-    {
-      src: "https://source.unsplash.com/epcsn8Ed8kY/600x799",
-      title: "ボケみたいな",
-      width: 3,
-      height: 4
-    },
-    {
-      src: "https://source.unsplash.com/NQSWvyVRIJk/800x599",
-      title: "これはタイトルですよ。これはタイトルですよ。",
-      width: 4,
-      height: 3
-    },
-    {
-      src: "https://source.unsplash.com/zh7GEuORbUw/600x799",
-      title: "これはタイトルすよ。",
-      width: 3,
-      height: 4
-    },
-    {
-      src: "https://source.unsplash.com/PpOHJezOalU/800x599",
-      title: "これはルですよ。",
-      width: 4,
-      height: 3
-    },
-    {
-      src: "https://source.unsplash.com/I1ASdgphUH4/800x599",
-      title: "これよ。",
-      width: 4,
-      height: 3
+  const client = new ApolloClient({
+    // uri: 'https://tokushimahatchy.com/graphql',
+    uri: 'http://localhost:3000/graphql',
+    fetchOptions: {
+      fetch: fetch as any
     }
-  ]
+  });
+  const props = await client.query({
+    query: gql`
+      query Query {
+        gallery {
+          _id
+          key
+          title
+          image {
+            secure_url
+            url
+            resource_type
+            format
+            height
+            width
+            signature
+            version
+            public_id
+          }
+          date
+          place
+          placeUrl
+        }
+      }
+    `,
+  })
+  .then(result => {
+    return {
+      photos: result.data.gallery
+        .filter((x: any) => x.image.url !== null )
+        .map((x: any) => ({
+          src: `https://res.cloudinary.com/tokushima-hatchy-official-site/image/upload/c_limit,q_auto,w_1024,h_1024/${x.image.public_id}.${x.image.format}`,
+          title: x.title,
+          width: x.image.width,
+          height: x.image.height,
+          date: x.date,
+          place: x.place,
+          placeurl: x.placeUrl
+        })),
+    }
+  })
+  .catch(error => {
+    return {
+      error,
+      photos: []
+    }
+  });
 
   return {
-    //   error: {},
-      photos
+    ...props
   }
-  
+
 }
 
 export default PhotoGallery

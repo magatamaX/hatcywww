@@ -17,7 +17,7 @@ const Profile = ({ error, profile, history } : { error: any, profile: any[], his
       <Head>
         <title>プロフィール｜パフォーミングアーティスト 徳島はっちー</title>
         <meta name="description" content={description} />
-        <meta name="keywords" content="パントマイム,ジャグリング,クラウン,アートマイム,大道芸,ピエロ,ダンス,パフォーマンス,徳島,徳島はっちー" />
+        <meta name="keywords" content="徳島はっちー,パントマイム,ジャグリング,クラウン,アートマイム,大道芸,ピエロ,ダンス,パフォーマンス,徳島" />
         <meta property="og:locale" content="ja_JP" />
         <meta property="og:title" content="プロフィール｜パフォーミングアーティスト 徳島はっちー" />
         <meta property="og:type" content="website" />

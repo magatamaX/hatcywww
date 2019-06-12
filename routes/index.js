@@ -90,6 +90,21 @@ const getApi = () => {
 		})
 }
 
+const Gallery = keystone.list('Gallery');
+const getGallery = (skip, limit) => {
+	return Promise.resolve().then(() => {
+		return Gallery.model
+			.find()
+			.sort('-date')
+			.skip(skip)
+			.limit(limit)
+			.exec((err, results) => {
+				if (err) throw err
+				return results
+			})
+		})
+}
+
 const typeDefs = gql`
 scalar Date
 type Image {
@@ -97,8 +112,8 @@ type Image {
 	url: String
 	resource_type: String
 	format: String
-	height: String
-	width: String
+	height: Int
+	width: Int
 	signature: String
 	version: String
 	public_id: String
@@ -128,12 +143,22 @@ type Api {
 	key: String
 	playlistId: String
 }
+type Gallery {
+	_id: String
+	key: String
+	title: String
+	image: Image
+	date: Date
+	place: String
+	placeUrl: String
+}
 type Query {
 	posts(limit: Int, skip: Int): [Post]
 	currentPost(slug: String!): Post 
 	profile: [Profile]
 	history: [History]
 	api: [Api]
+	gallery(limit: Int, skip: Int): [Gallery]
 }
 `;
 
@@ -143,7 +168,8 @@ const resolvers = {
 		currentPost: ( _, { slug }) => getCurrentPost(slug),
 		profile: () => getProfile(),
 		history: () => getHistory(),
-		api: () => getApi()
+		api: () => getApi(),
+		gallery: (_, { skip, limit }) => getGallery(skip, limit)
 	},
 };
 
