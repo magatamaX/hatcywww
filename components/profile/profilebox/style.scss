@@ -43,6 +43,7 @@
 .shoukai {
     @include fontSize(14px, 13px);
     line-height: 1.8;
+    width: 100%;
 
     @include max(s) {
         line-height: 1.6;

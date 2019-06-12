@@ -112,6 +112,12 @@ const PhotoGallery = ({ error, photos } : { error: any, photos: any[] }) => {
               .gallery-photo-footer__place a {
                 color: #fff;
               }
+              .react-images__view {
+                width: 100vw;
+              }
+              .react-images__pager {
+                width: 100vw;
+              }
               @media screen and (max-width: 768px) {
                 #photo-gallery {
                   min-height: 100vh;
