@@ -17,20 +17,20 @@ Enquiry.add({
 	name: {
 		type: Types.Name,
 		required: true,
-		label: '氏名'
+		label: '氏名',
 	},
 	company: {
 		type: String,
-		label: 'ご所属（会社名等）'
+		label: 'ご所属（会社名等）',
 	},
 	email: {
 		type: Types.Email,
 		required: true,
-		label: 'メールアドレス'
+		label: 'メールアドレス',
 	},
 	phone: {
 		type: String,
-		label: '電話番号'
+		label: '電話番号',
 	},
 	enquiryType: {
 		type: Types.Select,
@@ -38,18 +38,18 @@ Enquiry.add({
 		required: true,
 		options: [
 			{ value: 'request', label: 'お仕事のご依頼' },
-			{ value: 'other', label: 'その他のお問い合わせ' }
-		]
+			{ value: 'other', label: 'その他のお問い合わせ' },
+		],
 	},
 	message: {
 		type: Types.Markdown,
 		required: true,
-		label: 'メッセージ'
+		label: 'メッセージ',
 	},
 	createdAt: {
 		type: Date,
 		default: Date.now,
-		label: '受信日時'
+		label: '受信日時',
 	},
 });
 
