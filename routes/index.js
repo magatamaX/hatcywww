@@ -22,6 +22,8 @@ const keystone = require('keystone');
 
 const Enquiry = keystone.list('Enquiry');
 
+const fetch = require('isomorphic-unfetch');
+
 // GraphQL用サーバ設定
 const { ApolloServer, gql } = require('apollo-server-express');
 
@@ -185,19 +187,34 @@ exports = module.exports = nextApp => keystoneApp => {
 	const handle = nextApp.getRequestHandler();
 
 	keystoneApp.post('/contact/post', (req, res, next) => {
+		const recaptchaSecretKey = '6Ld-E8sUAAAAAFjjYvGMjb7RtFXp3uvfehOQ5hcH';
+		const token = req.body.token;
 
-		const newEnquiry = new Enquiry.model();
-		const updater = newEnquiry.getUpdateHandler(req);
+		fetch(`https://www.google.com/recaptcha/api/siteverify?secret=${recaptchaSecretKey}&response=${token}`)
+			.then(result => {
+				return result.json();
+			})
+			.then(result => {
+				if (!result.success) {
+					throw new Error('cannot verified.');
+				}
 
-		updater.process(req.body, {
-			flashErrors: true,
-			fields: 'name, company, email, phone, enquiryType, message',
-			errorMessage: 'There was a problem submitting your enquiry:',
-		}, function (err) {
-			if (err) console.log(err);
-			const actualPage = '/contact';
-			nextApp.render(req, res, actualPage);
-		});
+				const newEnquiry = new Enquiry.model();
+				const updater = newEnquiry.getUpdateHandler(req);
+
+				updater.process(req.body, {
+					flashErrors: true,
+					fields: 'name, company, email, phone, enquiryType, message',
+					errorMessage: 'There was a problem submitting your enquiry:',
+				}, function (err) {
+					if (err) console.log(err);
+					const actualPage = '/contact';
+					nextApp.render(req, res, actualPage);
+				});
+			})
+			.catch(error => {
+				console.log(error);
+			});
 	});
 
 	keystoneApp.get('/information/p/:slug', (req, res) => {

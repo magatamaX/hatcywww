@@ -39,3 +39,8 @@ declare module 'react-images' {
   export const ModalGateway: (children: any) => any;
   export default content;
 }
+
+declare module 'react-google-recaptcha' {
+	const content: any;
+	export default content;
+}

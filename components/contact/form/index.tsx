@@ -7,6 +7,7 @@ import Transition from 'react-transition-group/Transition';
 import fetch from 'isomorphic-unfetch'
 import Thanks from './../thanks/index'
 import Error from './../error/index'
+import ReCAPTCHA from 'react-google-recaptcha';
 
 interface Props {
 
@@ -21,7 +22,9 @@ interface State {
     finalMessage: boolean,
     processing: boolean,
     done: boolean,
-    error: boolean
+	error: boolean,
+	disabled: boolean,
+	token: string,
 }
 
 class Form extends React.Component<Props, State> {
@@ -38,7 +41,9 @@ class Form extends React.Component<Props, State> {
             finalMessage: false,
             processing: false,
             done: false,
-            error: false
+			error: false,
+			disabled: true,
+			token: '',
         }
 
     }
@@ -50,7 +55,21 @@ class Form extends React.Component<Props, State> {
             required: '入力してください。',
             phone: 'ハイフンなしの半角数字で入力してください。',
         }
-    })
+	})
+
+	handleReCAPTCHAOnChange = (token: string) => {
+		this.setState({
+			disabled: false,
+			token: token
+		})
+	};
+	
+	handleReCAPTCHAOnExpired = () => {
+		this.setState({
+			disabled: true,
+			token: ''
+		})
+	};
 
     handleSubmit() {
 
@@ -65,42 +84,54 @@ class Form extends React.Component<Props, State> {
     }
 
     submit() {
-        const obj = {
-            enquiryType: this.state.enquiryType,
-            company: this.state.company,
-            name: this.state.name,
-            email: this.state.email,
-            phone: this.state.phone,
-            message: this.state.message
-        }
-        const method = "POST";
-        const body = JSON.stringify(obj);
-        const headers = {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        };
-        fetch("https://tokushimahatchy.com/contact/post", {
-            method,
-            headers,
-            body
-        })
-        .then(() => {
-            // 送信完了
-            this.setState(() => ({
-                finalMessage: false,
-                processing: false,
-                done: true
-            }))
-        })
-        .catch((error) => {
+
+		// 指定国以外からの送信不可
+		fetch("https://d1a8b2x4rfv43p.cloudfront.net/")
+		.then(res => {
+			// 送信可能
+			return res.json();
+		})
+		.then(() => {
+
+			const obj = {
+				enquiryType: this.state.enquiryType,
+				company: this.state.company,
+				name: this.state.name,
+				email: this.state.email,
+				phone: this.state.phone,
+				message: this.state.message,
+				token: this.state.token,
+			}
+			const method = "POST";
+			const body = JSON.stringify(obj);
+			const headers = {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			};
+
+			return fetch("/contact/post", {
+				method,
+				headers,
+				body,
+			})
+		})
+		.then(() => {
+			// 送信完了
+			this.setState(() => ({
+				finalMessage: false,
+				processing: false,
+				done: true
+			}))
+		})
+		.catch(error => {
             // 送信失敗
-            console.log(error)
+            console.log('送信できません。', error)
             this.setState(() => ({
                 finalMessage: false,
                 processing: false,
                 error: true
             }))
-        });
+		});
     }
 
     render() {
@@ -291,6 +322,13 @@ class Form extends React.Component<Props, State> {
                                     </tr>
                                 </tbody>
                             </table>
+							<div className={css.recaptchaArea}>
+								<ReCAPTCHA
+									onChange={this.handleReCAPTCHAOnChange}
+									onExpired={this.handleReCAPTCHAOnExpired}
+									sitekey="6Ld-E8sUAAAAAKBrsXIcnCr1gxrk_RnO8ZgywG2U"
+								/>
+							</div>
                             <div className={css.button}>
                                 <Button
                                     color="yellow"
@@ -298,7 +336,8 @@ class Form extends React.Component<Props, State> {
                                     size="large"
                                     path=""
                                     shadow={true}
-                                    onClick={this.handleSubmit.bind(this)}
+									onClick={this.handleSubmit.bind(this)}
+									disabled={this.state.disabled}
                                 />
                             </div>
                         </form>
