@@ -21,7 +21,7 @@
     "keystone-email": "^1.1.0",
     "lodash": "^4.13.1",
     "mgn-smooth-scroll": "0.0.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "next": "^8.0.4",
     "next-react-svg": "^1.0.0",
     "node-sass": "^4.12.0",
